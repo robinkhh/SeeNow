@@ -7,15 +7,13 @@
     var nickName = "過關";//var account = Session["nickname"];
     var pin = ViewBag.Round;
     var strRound = ViewBag.strRound;
-   var userSort = ViewBag.userSort;
+    var userSort = ViewBag.userSort;
 
 }
-
 <h2>ScoreView</h2>
 @*pin=@pin*@
 @*strRound=@strRound*@
 @*@ViewBag.userSort*@
-
 <table class="table table-striped table-warning table-hover">
     <tr>
         <th>
@@ -28,25 +26,22 @@
             分數
         </th>
     </tr>
-
     @foreach (var u in userSort)
     {
         <tr>
             <td>
-                <img src="~/Image/@u.GetType().GetProperty("pf").GetValue(u)"  style="width:80px;height:80px" />
+                <img src="~/Image/@u.GetType().GetProperty("pf").GetValue(u)" style="width:80px;height:80px" />
             </td>
             <td>
                 @u.GetType().GetProperty("acc").GetValue(u)
             </td>
             <td>
                 @u.GetType().GetProperty("sco").GetValue(u)
-               
+
             </td>
         </tr>
     }
-
 </table>
-
 <div>
     <div class="row col-12 ">
         <div class="input-group">
@@ -59,7 +54,6 @@
             <input id="msg" class="form-control bg-transparent w-100" type="text" placeholder="輸人訊息!" value="">
             <div class="input-group-append">
                 <input type="Button" class="form-control  btn-info " id="sendGroupBtn" value="送出">
-
             </div>
         </div>
     </div>
@@ -85,7 +79,6 @@
         </div>
     </div>
 </div>
-
 @section scripts {
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
