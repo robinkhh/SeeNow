@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SeeNow.Models.announcement>
+
+        <table class="table table-hover table-sm" style="table-layout:fixed">
+            <tr>
+                <th class="text-center">
+                    @*@Html.DisplayNameFor(model => model.title)*@
+                    <a class="text-secondary">標題</a>
+                    
+                </th>
+                <th class="text-center">
+                    @*@Html.DisplayNameFor(model => model.content)*@
+                    <a class="text-secondary">內容</a>
+                </th>
+
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr >
+                    <td class="text-white" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+                        <span class="text-secondary">@Html.DisplayFor(modelItem => item.title, new { htmlAttributes = new { @class = "form-control " } })</span>
+                    </td>
+                    <td class="text-secondary" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+                        <a href="@Url.Action("Details","announcements", new { id=item.id})" class="text-secondary">@Html.DisplayFor(modelItem => item.content, new { htmlAttributes = new { @class = "form-control " } })</a>
+                        @*@Html.ActionLink(item.content, "Details", "announcements", new { id=item.id}, new { @class = "form-control" })*@
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+

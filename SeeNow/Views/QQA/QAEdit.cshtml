@@ -1,0 +1,81 @@
+﻿@model SeeNow.Models.quiz_answer
+
+@{
+    ViewBag.Title = "修改遊戲答案";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="masthead form ">
+
+    <div class="col-8 align-content-center offset-2">
+        <h2>編輯遊戲題目</h2>
+    </div>
+
+    <form method="post" action="@Url.Action("QAEdit")">
+        @Html.AntiForgeryToken()
+        <div class="container align-content-center">
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+
+                    <div class="col-md-10 col-md-offset-2 text-info">
+                        <h5>文字題目：@ViewBag.Ttext</h5>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+            <label class="col-md-2 control-label" for="answer_text">文字答案</label>
+            <div class="col-md-10">
+                @Html.DropDownList("answer_text", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.answer_text, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.quiz_guid, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @*@Html.DisplayFor(model => model.quiz_guid, new { htmlAttributes = new { @class = "form-control" } })*@
+                        遊戲題目流水號：<strong id="quiz_guid" name="@Model.quiz_guid">@Model.quiz_guid</strong>
+                        <input id="quiz_guid" name="quiz_guid" type="hidden" value="@Model.quiz_guid"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.answer_id, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @*@Html.DisplayFor(model => model.answer_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                        答案編號：<strong id="answer_id" name="answer_id">@Model.answer_id</strong>
+                        <input id="answer_id" name="answer_id" type="hidden" value="@Model.answer_id" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.answer_text, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.answer_text, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.answer_text, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="is_correct">答案是否正確</label>
+                    <div class="col-md-10">
+                        是：@Html.RadioButton("is_correct", true)
+                        否：@Html.RadioButton("is_correct", false)
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="儲存" class="btn btn-success" />
+                        <input id="Button1" type="button" value="取消" class="btn btn-info" onclick="location.href='@Url.Action("Index","QQA",new {id=ViewBag.QZID })'" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</header>

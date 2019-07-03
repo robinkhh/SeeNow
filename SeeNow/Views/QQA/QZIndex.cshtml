@@ -1,0 +1,110 @@
+﻿@model IEnumerable<SeeNow.Models.quizzes>
+
+@{
+    ViewBag.Title = "題目列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="masthead form ">
+
+    <div class="container">
+        @*<div class="col-2 btn  btn-outline-primary m-2">*@
+            @Html.ActionLink("新增題目", "QZAdd",0,new { @class = "col-2 btn  btn-outline-primary m-2" })
+        @*</div>*@
+        @*<div class="col-2 btn btn-outline-success m-2">*@
+            @Html.ActionLink("返回列表", "Index","QQA", 0, new { @class = "col-2 btn  btn-outline-success m-2" })
+        @*</div>*@
+    </div>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tittle_text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title_img_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title_video_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.energy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.visible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.like_num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.difficulty_level.difficulty_desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quiz_group1.group_name)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.type.type_desc)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.type.type_id)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tittle_text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title_img_path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title_video_path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.energy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.visible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.like_num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.difficulty_level.difficulty_desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quiz_group1.group_name)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.type.type_desc)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.type.type_id)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "QZEdit", new { id = item.quiz_guid }, new { @class = "btn btn-warning" }) @*|*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.quiz_guid }) |*@
+                @*@Html.ActionLink("新增答案", "QAAdd", new { id = item.quiz_guid })*@
+            </td>
+        </tr>
+        }
+
+    </table>
+
+</header>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SeeNow.Models.post>
+
+@{
+    ViewBag.Title = "後台管理--貼文";
+}
+
+<h2>後台管理--貼文</h2>
+
+<p>
+    @Html.ActionLink("新增貼文", "Create")
+</p>
+<table class="table table-striped table-secondary table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.post_quid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lock_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quizzes.quiz_guid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.post_quid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lock_flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quizzes.quiz_guid)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.post_quid }) @*|*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.post_quid }) |*@
+            @*@Html.ActionLink("刪除", "Delete", new { id = item.post_quid })*@
+        </td>
+    </tr>
+}
+
+</table>

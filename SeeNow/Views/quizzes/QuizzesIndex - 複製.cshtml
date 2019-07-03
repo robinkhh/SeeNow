@@ -1,0 +1,137 @@
+﻿@model IEnumerable<SeeNow.Models.quizzes>
+@{
+    ViewBag.Title = "QuizzesIndex";
+    //var Pin = @Context.Session.GetString("_Pin");
+}
+
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+            <div id="quizDiv" style="font-size:30px;text-align:center">quizDiv</div>
+        </div>
+        <div class="col-12">
+            <h1 id="countTime"></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <textarea id="message" class="form-control" style="min-width: 90%; height:auto"></textarea>
+        </div>
+        <div class="col-sm-12">
+            訊息:<input id="msg" type="text" value="">
+            <button type="Button" id="sendGroupBtn">送群組</button>
+            <button type="Button" id="autoBtn" onclick="autoQuiz()">AUTO RUN</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            Pin：<input id="group" type="text" value="111" style="width:100px">
+        </div>
+        <div class="col-sm-2">
+            姓名:<input id="name" type="text" value="Teacher" style="width:100px">
+        </div>
+        <div class="col-sm-2">
+            開始:<input type="Button" id="addGroupBtn" value="Start">
+        </div>
+
+        <div class="col-sm-3">
+            計時:<input id="interval_Time" type="text" value="5" style="width:100px">
+        </div>
+    </div>
+
+
+    <audio controls="controls" id="audio">
+        <source src="~/asset/music/gone_fishin_by_memoraphile_CC0.mp3" type="audio/mpeg" />
+    </audio>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table" id="Tbquiz">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tittle_text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title_img_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title_video_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.energy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.visible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.like_num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.difficulty_level.difficulty_desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quiz_group1.group_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type.type_desc)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tittle_text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title_img_path)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title_video_path)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.score)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.energy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.visible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.like_num)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.difficulty_level.difficulty_desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quiz_group1.group_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type.type_desc)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.quiz_guid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.quiz_guid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.quiz_guid })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    @section scripts {
+        <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/seenow.js"></script>
+    }

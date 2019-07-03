@@ -1,0 +1,138 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @*<title>Freelancer - Start Bootstrap Theme</title>*@
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom fonts for this template -->
+    @*<link href="~/Content/fontawesome-free/all.min.css" rel="stylesheet" type="text/css">*@
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Plugin CSS -->
+    <link href="~/Content/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/freelancers/freelancer.css" rel="stylesheet">
+    <style>
+        #LOGO-06 {
+            top: -1000px;
+            left: 30%;
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+        <div class="container">
+
+            @Html.Action("TopNav", "Home", new { role_type = Session["user_role"] })
+
+            @Html.Action("UserNav", "Home", new { role_type = Session["user_role"] })
+        </div>
+    </nav>
+
+    @*<div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("Index","Home")#portfolio">風雲榜</a>
+                </li>
+
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("Index","Home")#about">關於我們</a>
+                </li>
+
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("Index","Home")#contact">聯絡我們</a>
+                </li>
+
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=@Url.Action("Registered","Home")>註冊</a>
+                </li>
+
+                <li class="nav-item mx-0 mx-lg-1 ">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=@Url.Action("Login","Home")>登入</a>
+                </li>
+            </ul>
+        </div>*@
+
+    @*<div class="container body-content">*@
+    @RenderBody()
+    <hr />
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Address</h4>
+                    <p class="lead mb-0">
+                        勞動部勞動力發展署高屏澎東分署
+                        <br>高雄市<br>前鎮區凱旋四路105號<br>
+                    </p>
+                </div>
+                <div class="col-md-4 mb-5 mb-lg-0">
+
+                </div>
+                <div class="col-md-4">
+                    <h4 class="text-uppercase mb-4">Telephone Number</h4>
+                    <p class="lead mb-0">
+                        (07) 821-0171
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <p>&copy; @DateTime.Now.Year - SeeNow</p>
+            </div>
+        </div>
+    </footer>
+
+    @*<footer class="footer text-center">
+
+        </footer>*@
+    @*</div>*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+
+    <!-- Bootstrap core JavaScript -->
+    @*<script src="~/Scripts/jquery.min.js"></script> 20190613 meta mark*@
+
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="~/Scripts/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Scripts/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Contact Form JavaScript -->
+    @*<script src="~/Scripts/freelancers/jqBootstrapValidation.min.js"></script>*@
+    @*<script src="~/Scripts/freelancers/contact_me.min.js"></script>*@
+    <!-- Custom scripts for this template -->
+    <script src="~/Scripts/freelancers/freelancer.min.js"></script>
+
+    <script>
+        $('#LOGO-06').hide();
+        $('#LOGO-06').animate({ 'top': '50%' }, 500).animate({ 'width': '100px' }, 400)
+            .animate({ 'width': '300px' }, 400).animate({ 'width': '150px' }, 400)
+            .animate({ 'width': '500px', 'height': '300px' }, 400).animate({ 'top': '25%' }, 200);
+
+
+        function changerole(role_id, value) {
+            //alert(value);
+            //$('#navrole').text(value);
+            //SetSession.setAttribute('user_role', value);
+            //sessionStorage.setItem('user_role', role_id);
+            //request.getSession().setAttribute('user_role',role_id);
+        }
+
+    </script>
+</body>
+</html>

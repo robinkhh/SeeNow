@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e1c8e88a1c04e98aba601885c3824f7" Name="Diagram1">
+        <EntityTypeShape EntityType="SeeNowModel.admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.announcement" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.announcement_log" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.bag" Width="1.5" PointX="8.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.buy_list" Width="1.5" PointX="11.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.category" Width="1.5" PointX="6" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.category_log" Width="1.5" PointX="11.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.classes" Width="1.5" PointX="8.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.classes_member" Width="1.5" PointX="10.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.difficulty_level" Width="1.5" PointX="14.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.difficulty_level_log" Width="1.5" PointX="16.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.friendship" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.guardianship" Width="1.5" PointX="8.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.mall" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.mall_log" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.manager" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.message" Width="1.5" PointX="8.25" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.play_record" Width="1.5" PointX="11.25" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.play_record_answer" Width="1.5" PointX="13.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.post" Width="1.5" PointX="13.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.post_violations" Width="1.5" PointX="15.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.profile" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.profile_log" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.quiz_answer" Width="1.5" PointX="18.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.quiz_group" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.quiz_violations" Width="1.5" PointX="18.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.quizzes" Width="1.5" PointX="16.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.role" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.role_log" Width="1.5" PointX="11" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.type" Width="1.5" PointX="14.25" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.use_record" Width="1.5" PointX="10.5" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.user_violations" Width="1.5" PointX="14.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.users" Width="1.5" PointX="6" PointY="17.875" IsExpanded="true" />
+        <AssociationConnector Association="SeeNowModel.FK__announcement__id__395884C4" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__announcem__manag__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__bag__account__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__bag__product_id__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__buy_list__accoun__0D7A0286" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__buy_list__produc__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__category___categ__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_grou__categ__318258D2" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__category___manag__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__classes__teacher__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__classes_m__class__2BC97F7C" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__classes_m__stude__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__difficult__diffi__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quizzes__difficu__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__difficult__manag__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__friendshi__accou__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__guardians__accou__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__mall_log__produc__2645B050" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__use_recor__produ__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__mall_log__manage__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__post_viol__manag__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__profile_l__manag__30C33EC3" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_viol__manag__2FCF1A8A" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__role_log__manage__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__user_viol__manag__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__message__from_id__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__message__to_id__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__use_recor__messa__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__play_reco__accou__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__play_reco__quiz___1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__play_record_answ__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__post__account__3A179ED3" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__post__quiz_guid__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__post_viol__post___367C1819" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__post_viol__repor__3493CFA7" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__profile_l__profi__3864608B" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__users__profile_i__32767D0B" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_answ__quiz___1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_answ__type___25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_grou__accou__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quizzes__quiz_gr__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_viol__quiz___37703C52" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quiz_viol__repor__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__quizzes__type_id__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__use_recor__quiz___208CD6FA" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__role_log__role_i__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__users__role_id__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__use_recor__accou__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__user_viol__repor__339FAB6E" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.FK__user_viol__repot__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="SeeNowModel.like_record" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SeeNowModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SeeNowModel.setting_menu" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeeNowModel.frontend_menu" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

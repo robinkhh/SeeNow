@@ -1,0 +1,66 @@
+﻿@model SeeNow.Models.post_violations
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>post_violations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.check_flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.check_flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.violation_reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.violation_reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.manager.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manager.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.post.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.post.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.role_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.violation_quid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,132 @@
+﻿@model SeeNow.ViewModels.QQA
+
+@{
+    ViewBag.Title = "測驗答案列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>測驗答案列表</h2>
+<header class="masthead form ">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-6 col text-center border  ">
+                @*<input id="Button1" type="button" value="題目列表" class="btn btn-info m-2" onclick="location.href='@Url.Action("QZIndex","QQA")'" />*@
+                <input id="Button1" type="button" value="新增題目" class="btn btn-info m-2" onclick="location.href='@Url.Action("QZAdd","QQA")'" />
+                <div class="row ">
+                    <div class="col-2">
+                        <a>題組名稱</a>
+                    </div>
+                    <div class="col-8">
+                        <a>題目</a>
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                </div>
+                @foreach (var item in @ViewBag.quizzes_list)
+                {
+                    <div class="row">
+                        <div class="col-2">
+                            <a>@Extention.GetPropertyValueByName("group_name", item)</a>
+                        </div>
+                        <div class="col-8">
+                            <a href="/QQA/Index/@Extention.GetPropertyValueByName("quiz_guid", item)">@Extention.GetPropertyValueByName("tittle_text", item)</a>
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-primary" href="/QQA/QZEdit/@Extention.GetPropertyValueByName("quiz_guid", item)">編輯</a>
+
+                        </div>
+                    </div>
+                }
+
+                @*@foreach (var item in Model.quizzes)
+                {
+                    <div class="row">
+                        <div class="col-10">
+                            @Html.ActionLink(item.tittle_text, "Index", new { id = item.quiz_guid })
+                        </div>
+                        <div class="col-2">
+                            @Html.ActionLink("編輯", "QZEdit", new { id = item.quiz_guid }, new { @class = "btn btn-warning" })
+                        </div>
+                    </div>
+                }*@
+            </div>
+
+            <div class="col-md-6">
+                @*<input id="Button1" type="button" value="答案列表" class="btn btn-warning m-2" onclick="location.href='@Url.Action("QAIndex","QQA")'" />*@
+
+                @if (Model.answers.Count == 0)
+                {
+                    <h4>尚無任何答案</h4>
+
+                    <p>
+                        @*@Html.ActionLink("答案列表", "QAIndex", null, new { @class = "btn btn-warning m-2" })*@
+                        @Html.ActionLink("新增答案", "QAAdd", new { id = ViewBag.qzid }, new { @class = "btn btn-info" })
+
+                    </p>
+
+                }
+                else if (Model.answers.Count < 4)
+                {
+                    <p>
+                        @*@Html.ActionLink("答案列表", "QAIndex", null, new { @class = "btn btn-warning m-2" })*@
+                        @Html.ActionLink("新增答案", "QAAdd", new { id = ViewBag.qzid }, new { @class = "btn btn-info" })
+                        @*@Html.ActionLink("修改答案", "QAEdit", new { id = ViewBag.qzid }, new { @class = "btn btn-danger" })*@
+
+                    </p>
+
+                }
+                else
+                {
+                    <div class="m-2">
+                        @*@Html.ActionLink("答案列表", "QAIndex", null, new { @class = "btn btn-warning m-2" })*@
+                        @*@Html.ActionLink("修改答案", "QAEdit", new { id = ViewBag.qzid }, new { @class = "btn btn-success" })*@
+                    </div>
+
+                }
+
+                <div class="col-md-8 mb-4 text-primary">
+                    <h5>@ViewBag.Ttext.tittle_text</h5>
+                </div>
+
+                <table class="table">
+                    <tr>
+                        <th>遊戲題目流水號</th>
+                        <th>答案編號</th>
+                        @*<th>型態編號</th>*@
+                        <th>文字答案</th>
+                        @*<th>圖片答案</th>*@
+                        <th>是否正確</th>
+                    </tr>
+
+                    @foreach (var item in Model.answers)
+                    {
+                        <tr>
+                            <td>@item.quiz_guid</td>
+                            <td>@item.answer_id</td>
+                            @*<td>@item.type_id</td>*@
+                            <td>@item.answer_text</td>
+                            @*<td>@item.answer_img_path</td>*@
+                            <td>@item.is_correct</td>
+                            <td>
+                                @Html.ActionLink("修改答案", "QAEdit", new { qzid = item.quiz_guid, qaid = item.answer_id }, new { @class = "btn btn-success" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <hr />
+                <br />
+                @*測試傳參數*@
+
+            </div>
+
+
+
+        </div>
+    </div>
+</header>
+

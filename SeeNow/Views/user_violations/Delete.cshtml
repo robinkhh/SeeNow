@@ -1,0 +1,72 @@
+﻿@model SeeNow.Models.user_violations
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>user_violations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.check_flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.check_flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.violation_reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.violation_reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.manager.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manager.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.role_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users1.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users1.role_id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

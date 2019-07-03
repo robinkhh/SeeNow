@@ -1,0 +1,143 @@
+﻿@model IEnumerable<SeeNow.Models.play_record>
+@{
+
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+    ViewBag.Title = "ScoreView";
+    var account = Session["user_id"];//var account = Session["account"];
+    var nickName = Session["user_name"];//var account = Session["nickname"];
+    var pin = ViewBag.Round;
+    var strRound = ViewBag.strRound;
+    var userSort = ViewBag.userSort;
+}
+<style>
+
+    body {
+        /*background: #000;*/
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    canvas {
+        cursor: grab;
+        display: block;
+        vertical-align: bottom;
+    }
+
+    #particles-js {
+        width: 100%;
+        height: 100%;
+        background-color: #b61924;
+        background-image: url('../Image/castle.png');
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<header class="masthead form ">
+    <marquee id="info" class="text-light h2 ">
+        請拉道具至帳號~~~
+    </marquee>
+    <div class="container" style="position:relative;">
+        <div id="particles-js" style="position:absolute;z-index:-1;width:inherit;height:inherit;left:0px;top:50px;">
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-1">
+                @*<span title="花" class="  " draggable="true" id="dragflower" style="position:absolute;left: 0px;top:-50px;cursor: grab;">*@
+                    <img src="~/assets/image/rose.png" width="100" title="花" class="  " draggable="true" id="dragflower" style="position:absolute;left: 0px;top:-50px;cursor: grab;"/>
+                @*</span>*@
+            </div>
+            <div class="col-1 ">
+                @*<span title="煙火" class="m-2" draggable="true" id="dragflower" style="position:absolute;left: 90px;top:-50px;cursor: grab;">*@
+                    <img src="~/assets/image/fireworks.png" width="100" title="煙火" class="m-2" draggable="true" id="dragflower" style="position:absolute;left: 90px;top:-50px;cursor: grab;"/>
+                @*</span>*@
+            </div >
+            <div class="col-1">
+                @*<span title="踩" class="m-2" draggable="true" id="dragsandals" style="position:absolute;left:200px;top:-50px;cursor: grab;">*@
+                    <img src="~/assets/image/sandals.png" width="100" title="踩" class="m-2" draggable="true" id="dragsandals" style="position:absolute;left:200px;top:-50px;cursor: grab;"/>
+                @*</span>*@
+            </div>
+        </div>
+        <span id="my_nickname" class="d-none">@nickName</span>
+        <span id="my_account" class="d-none">@account</span>
+        <table class="table table-striped table-light table-hover bg-transparent" style="position:absolute;left:0px;top:50px;">
+            <tr>
+                <th class="text-light h3 ">
+                    圖像
+                </th>
+                <th class="text-light h3">
+                    帳號
+                </th>
+                <th class="text-light h3"> 
+                    分數
+                </th>
+            </tr>
+            @foreach (var u in userSort)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Image/@u.GetType().GetProperty("pf").GetValue(u)"
+                             id="@u.GetType().GetProperty("nickname").GetValue(u)" class="droptarget"
+                             style="width:80px;height:80px" />
+                    </td>
+                    <td id="@u.GetType().GetProperty("nickname").GetValue(u)" class="droptarget text-light h3">
+                        @u.GetType().GetProperty("nickname").GetValue(u)
+                    </td>
+                    <td id="@u.GetType().GetProperty("nickname").GetValue(u)" class="droptarget text-light h3">
+                        @u.GetType().GetProperty("sco").GetValue(u)
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="row d-none">
+            <div class=" col-12 ">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary" id="">訊息</span>
+                    </div>
+                    <textarea id="message" class="form-control bg-transparent"></textarea>
+                </div>
+                <div class="input-group">
+                    <input id="msg" class="form-control bg-transparent w-100" type="text" placeholder="輸人訊息!" value="">
+                    <div class="input-group-append">
+                        <input type="Button" class="form-control  btn-info " id="sendGroupBtn" value="送出">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-none">
+            <div class=" col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent text-primary" id="">PIN</span>
+                    </div>
+                    <input id="group" class="form-control bg-transparent disabled" type="text" value="@pin">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent text-primary" id="">帳號</span>
+                    </div>
+                    <input id="name" class="form-control bg-transparent" type="text" value="@account">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent text-primary" id="">暱稱</span>
+                    </div>
+                    <input id="nickname" class="form-control bg-transparent" type="text" value="@nickName">
+                    <input type="Button" id="addGroupBtn" class="form-control btn-primary text-danger" value="建立群組">
+                </div>
+                @*<div class="">
+                        <label for="showScore">離開</label>
+                        <input type="Button" id="showScore" class="form-control btn-warning" value="離開">
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</header>
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/seeScore.js"></script>
+    <script src="~/Scripts/particles.js-master/particles.js"></script>
+    <script src="~/Scripts/particles.js-master/demo/js/app.js"></script>
+}}}

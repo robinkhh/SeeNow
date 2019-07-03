@@ -1,0 +1,58 @@
+﻿@model SeeNow.Models.play_record
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>play_record</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.role_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quizzes.type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quizzes.type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.play_record_answer.account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.play_record_answer.account)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

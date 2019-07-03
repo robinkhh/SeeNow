@@ -1,0 +1,63 @@
+﻿@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+@{
+    string ControllerName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+    switch (ControllerName)
+    {
+        case "Game":
+            Layout = "~/Views/Shared/_GameLayout.cshtml";
+            break;
+        case "Home":
+        case "users":
+        case "announcements":
+        case "quiz_group":
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+        case "backendHome":
+
+
+
+            Layout = "~/Views/Shared/_BackEndLayout.cshtml";
+            break;
+        case "LayuiIndex":
+
+        case "managers":
+        case "announcement_log":
+
+        case "Bags":
+        case "Buy_list":
+        case "categories":
+        case "category_log":
+        case "Classes":
+        case "Classes_Member":
+        case "difficulty_level":
+        case "difficulty_level_log":
+        case "friendships":
+        case "guardianships":
+        case "Mall":
+        case "Mall_Log":
+        case "messages":
+        case "play_record":
+        case "play_record_answer":
+        case "Post_violations":
+        case "Posts":
+        case "Profile_Log":
+        case "Profiles":
+        case "quiz_answer":
+
+        case "quiz_violations":
+        case "quizzes":
+        case "role_log":
+        case "roles":
+        case "use_record":
+        case "user_violations":
+
+            Layout = null;
+            break;
+        default:
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+}   

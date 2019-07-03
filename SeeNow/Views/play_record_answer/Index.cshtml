@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SeeNow.Models.play_record_answer>
+
+@{
+    ViewBag.Title = "後台管理--遊戲紀錄答案";
+}
+
+<h2>後台管理--遊戲紀錄答案</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table table-striped table-info table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.play_record.play_guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.play_record.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.select_answer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.play_record.quiz_guid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.play_record.play_guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.play_record.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.select_answer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.play_record.quiz_guid)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

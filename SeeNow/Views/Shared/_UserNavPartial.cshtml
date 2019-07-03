@@ -1,0 +1,53 @@
+﻿@*<p>@Session["user_role"]</p><br />
+<p>@Session["role_desc"]</p>*@
+
+<button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#userNac" aria-controls="userNac" aria-expanded="false" aria-label="Toggle navigation">
+    Member
+    <i class="fas fa-bars"></i>
+</button>
+    <div class="navbar navbar-expand-lg bg-secondary" >
+        @switch (Session["user_role"])
+        {
+            case "2":
+            case "3":
+            case "4":
+                <div class="collapse navbar-collapse" id="userNac">
+                    <a class="nav-item mx-0 mx-lg-1"><img name="member" src="~/Image/@Session["profile"]" width="65"></a>
+
+                    @*<p class="text-light mx-0 mx-lg-1 navbar-text align-items-center" style="font-size:12px">@Session["user_name"] 歡迎光臨~</p>*@
+                    <a class="navbar-brand js-scroll-trigger" style="color:white;font-family:'Lucida Handwriting';font-size:12pt">@Session["user_name"] 歡迎光臨~</a>
+
+                    <div class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="navrole">@Session["role_desc"]</a>
+
+                        <div class="dropdown-menu">
+                            @foreach (var item in ViewBag.role_id)
+                            {
+                                @*<a class="dropdown-item" onclick="changerole('@item.Value','@item.Text')" href="@Request.FilePath">@item.Text</a>*@
+                                <a class="dropdown-item"  href="@Url.Action("SetVariable", "SetSession", new { key ="role_desc",value=item.Text })">@item.Text</a>
+                            }
+
+                            @*<a class="dropdown-item" href="Home/RoleChange?role='學生'">學生</a>
+        <a class="dropdown-item" href="Home/RoleChange?role='家長'">家長</a>*@
+
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="card" style="width: 5rem;">
+                        <img class="card-img-top" src="~/Image/antelope_icon_s.png" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">@Session["user_name"] 歡迎光臨</p>
+                        </div>
+                    </div>*@
+
+                break;
+            default:
+                break;
+                <br />
+
+        }
+
+    </div>
+

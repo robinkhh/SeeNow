@@ -1,0 +1,58 @@
+﻿@model SeeNow.Models.quiz_answer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>quiz_answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.answer_text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answer_text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answer_img_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answer_img_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quizzes.type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quizzes.type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type.type_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type.type_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

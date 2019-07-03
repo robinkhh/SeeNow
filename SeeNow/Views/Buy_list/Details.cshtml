@@ -1,0 +1,50 @@
+﻿@model SeeNow.Models.buy_list
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>buy_list</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.role_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mall.product_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mall.product_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

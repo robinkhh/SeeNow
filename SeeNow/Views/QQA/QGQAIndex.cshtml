@@ -1,0 +1,74 @@
+﻿
+@model IEnumerable<SeeNow.Models.quiz_group>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "題目群組列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>題目群組列表</h2>
+<header class="masthead form ">
+
+    <div class="row">
+        <div class="col-md-4 col text-center">
+            @foreach (var item in Model)
+            {
+                <p>
+
+                    @Html.ActionLink(item.group_name, "QGQAIndex", new { id = item.quiz_group1 })
+
+                </p>
+
+            }
+
+        </div>
+        <div class="col-md-8">
+
+            <h5>
+                @Html.ActionLink("新增題目與答案", "QGQAAdd", "QQA")
+            </h5>
+
+            <table class="table">
+                <tr>
+                    <th>遊戲題目流水號</th>
+                    <th>題庫類別編號</th>
+                    <th>文字題目</th>
+                    <th>答題時間(秒)</th>
+                    <th>可獲得積分</th>
+                    <th>遊戲題組編號</th>
+                    <th>文字答案</th>
+                    <th>答案是否正確</th>
+
+                </tr>
+
+                @foreach (var item in ViewBag.quizzes)
+                {
+
+                    <tr>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("quiz_guid", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("type_id", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("tittle_text", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("time", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("score", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("quiz_group", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("answer_text", item)</td>
+                        <td>@SeeNow.Extention.GetPropertyValueByName("is_correct", item)</td>
+                    </tr>
+                }
+
+            </table>
+            <hr />
+            <br />
+            @*測試傳參數*@
+            <div class="col-12">
+                <div>This is Test！！</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

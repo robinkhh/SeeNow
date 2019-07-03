@@ -1,0 +1,90 @@
+﻿@model SeeNow.Models.mall_log
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mall_log</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.product_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.img_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.used_img_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.used_img_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mall.product_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mall.product_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.manager.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manager.password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

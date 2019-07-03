@@ -1,0 +1,175 @@
+﻿@*@model IEnumerable<SeeNow.Models.quizzes>*@
+@*20190530新增*@
+@model IEnumerable<SeeNow.Models.quiz_group>
+
+@{
+    ViewBag.Title = "QuizzesIndex";
+    //var Pin = @Context.Session.GetString("_Pin");
+    var qzans = Json.Decode(ViewBag.qzans);
+    int rowid = 1;//0是標題,所以題目從1開始
+    var round_no = ViewBag.round_no;
+}
+
+<header class="masthead form ">
+    <div class="row">
+        @* 20190530新增 *@
+        <div class="col-md-4 col text-center">
+            @foreach (var item in Model)
+            {
+                <p>
+
+                    @Html.ActionLink(item.group_name, "QuizzesIndex", new { id = item.quiz_group1 })
+
+                </p>
+
+            }
+
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="quizzesbg">
+                <p></p>
+                <div class="row">
+                    <div class="rowquizheigh quesion-txt">
+                        <div id="quizDiv">quizDiv</div>
+                    </div>
+                    <div class="col-12">
+                        <div>
+                            <h1 id="countTime"></h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <textarea id="message" class="form-control" style="min-width: 90%; height:auto"></textarea>
+                            </div>
+                            <div class="col-sm-12">
+                                訊息:<input id="msg" type="text" value="">
+                                <button type="Button" id="sendGroupBtn">送群組</button>
+                                <button type="Button" id="autoBtn" onclick="playQuiz(1,-1,@(round_no))">AUTO RUN</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Pin：<input id="group" type="text" value="111" style="width:100px">
+                            </div>
+                            <div class="col-sm-2">
+                                姓名:<input id="name" type="text" value="A123" style="width:100px">
+                            </div>
+                            <div class="col-sm-2">
+                                開始:<input type="Button" id="addGroupBtn" value="Start">
+                            </div>
+
+                            <div class="col-sm-3">
+                                計時:<input id="interval_Time" type="text" value="5" style="width:100px">
+                            </div>
+                        </div>
+                        <audio id="audio">
+                            <source src="~/asset/music/ajourneyawaits.mp3" type="audio/mpeg" />
+                        </audio>
+
+                        <p>
+                            @Html.ActionLink("Create New", "Create")
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="table" id="Tbquiz">
+                <tr>
+                    <th>
+                        編號
+                    </th>
+                    <th>
+                        題目
+                    </th>
+                    <th>
+                        時間
+                    </th>
+                    <th>
+                        答案A
+                    </th>
+                    <th>
+                        correct
+                    </th>
+                    <th>
+                        答案B
+                    </th>
+                    <th>
+                        correct
+                    </th>
+                    <th>
+                        答案C
+                    </th>
+                    <th>
+                        correct
+                    </th>
+                    <th>
+                        答案D
+                    </th>
+                    <th>
+                        correct
+                    </th>
+                    <th>
+                        score
+                    </th>
+
+                </tr>
+
+                @foreach (var qz in qzans)
+                {
+                    <tr>
+                        <td>
+                            @qz.quiz_guid
+                        </td>
+                        <td>
+                            @qz.title
+                        </td>
+                        <td>
+                            @qz.time
+                        </td>
+                        <td>
+                            @qz.ans1
+                        </td>
+                        <td>
+                            @qz.is_correct1
+                        </td>
+                        <td>
+                            @qz.ans2
+                        </td>
+                        <td>
+                            @qz.is_correct2
+                        </td>
+                        <td>
+                            @qz.ans3
+                        </td>
+                        <td>
+                            @qz.is_correct3
+                        </td>
+                        <td>
+                            @qz.ans4
+                        </td>
+                        <td>
+                            @qz.is_correct4
+                        </td>
+                        <td>
+                            @qz.score
+                        </td>
+                        <td>
+                            @*每列row做一Button帶參數rowid,rowid,round_no+=1*@
+                            <button type="Button" onclick="playQuiz(@(rowid),@(rowid),@(++round_no))">Menu</button>
+                            @*下一列rowid加1*@
+                            @(rowid++)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</header>
+    @section scripts {
+        <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/seenow.js"></script>
+    }

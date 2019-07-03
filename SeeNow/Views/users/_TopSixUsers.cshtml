@@ -1,0 +1,26 @@
+﻿@{
+    int i = 0;
+}
+
+
+@foreach (var item in @ViewBag.topsix)
+{
+    i = i + 1;
+
+    <div class="col-md-6 col-lg-4">
+        <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-@i" style="width:350px;height:252.77px">
+            <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                    <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+            </div>
+            <div>
+                @*<img class="img-fluid" src="~/Image/freelancer/portfolio/cabin.png" alt="">*@
+                <img class="img-fluid" src="~/Image/@Extention.GetPropertyValueByName("profile_path",item)" width="130" alt="" />
+                <div>
+                    <p class="text-center text-white font-italic font-weight-bold display-4">@Extention.GetPropertyValueByName("nick_name", item)</p>
+                </div>
+            </div>
+        </a>
+    </div>
+}

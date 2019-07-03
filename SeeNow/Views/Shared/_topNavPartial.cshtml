@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SeeNow.Models.frontend_menu>
+
+
+        <a class="navbar-brand js-scroll-trigger" href="@Url.Action("Index","Home")#page-top" style="color:white;font-family:'Lucida Handwriting'">SeeNow</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        
+
+
+        <div class="navbar-collapse collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                @foreach (var item in Model)
+                {
+                    if (!item.is_parent && item.parent_id == -1)
+                    {
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-2 rounded js-scroll-trigger" href="@Url.Action(item.action,item.controller)@item.point">
+                                @if (@item.icon_name == null || @item.icon_name == "")
+                                {
+                                    @item.menu_name_tw
+                                }
+                                else
+                                {
+                                    <img title="@item.menu_name_tw" alt="@item.menu_name_tw" name="icon" src="~/Image/topNav/@item.icon_name" width="30">
+                                }
+                            </a>
+                        </li>
+                    }
+                    else if (item.is_parent && item.parent_id == -1)
+                    {
+                        var childItems = Model.Where(p => p.parent_id == item.id).ToList();
+                        <li class="nav-item dropdown mx-0 mx-lg-1">
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="@Url.Action(item.action,item.controller)@item.point">
+                                @item.menu_name_tw
+                                @*<span class="caret"></span>*@
+                            </a>
+                            <ul class="dropdown-menu " >
+                                @foreach (var ch in childItems)
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action(ch.action,ch.controller)">@ch.menu_name_tw</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                }
+
+
+
+            </ul>
+        </div>
+
+        
+      

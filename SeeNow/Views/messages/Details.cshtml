@@ -1,0 +1,66 @@
+﻿@model SeeNow.Models.message
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.msg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.msg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.read_flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.read_flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.delete_flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.delete_flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.role_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users1.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users1.role_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.message_guid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

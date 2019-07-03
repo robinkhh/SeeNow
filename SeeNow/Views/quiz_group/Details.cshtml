@@ -1,0 +1,46 @@
+﻿@model SeeNow.Models.quiz_group
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>quiz_group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            題組名稱
+            @*@Html.DisplayNameFor(model => model.group_name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.group_name)
+        </dd>
+
+        <dt>
+            題組描述
+            @*@Html.DisplayNameFor(model => model.category.category_desc)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.category_desc)
+        </dd>
+
+        <dt>
+            用戶
+            @*@Html.DisplayNameFor(model => model.users.role_id)*@
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.users.role_id)*@
+            @Html.DisplayFor(model => model.users.account)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.quiz_group1 }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

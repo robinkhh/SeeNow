@@ -1,0 +1,34 @@
+﻿@model SeeNow.Models.play_record_answer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>play_record_answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.select_answer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.select_answer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.play_record.account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.play_record.account)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

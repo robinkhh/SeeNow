@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SeeNow.Models.message>
+
+@{
+    ViewBag.Title = "後台管理--信件";
+}
+
+<h2>後台管理--信件</h2>
+
+<p>
+    @Html.ActionLink("新增信件", "Create")
+</p>
+<table class="table table-striped table-danger table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.msg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.read_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.delete_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users1.account)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.msg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.read_flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delete_flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users1.account)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id=item.message_guid }) @*|*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.message_guid }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.message_guid })*@
+        </td>
+    </tr>
+}
+
+</table>

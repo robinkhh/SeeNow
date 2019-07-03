@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SeeNow.Models.announcement>
+
+@{
+    ViewBag.Title = "後台管理--公告";
+    
+}
+@Styles.Render("~/back/css")
+<h2>後台管理--公告</h2>
+
+<p>
+    @Html.ActionLink("新增公告", "Create")
+</p>
+<table class="table table-striped table-secondary table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.publish_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priority)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publish_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.priority)
+            </td>
+            <td>
+                @Html.ActionLink("修改公告", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary" }) @*|*@
+                
+                @*@Html.ActionLink("刪除公告", "Delete", new { id=item.id })*@
+            </td>
+        </tr>
+    }
+
+</table>

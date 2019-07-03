@@ -1,0 +1,39 @@
+﻿
+
+<head></head>
+<body>
+
+</body>
+
+@*<ul class="app-menu">
+    @foreach (var item in ViewBag.settingmenu)
+    {
+
+        id = SeeNow.Extention.GetPropertyValueByName("Id", item);
+        topMenu = SeeNow.Extention.GetPropertyValueByName("TopMenu", item);
+        secondMenu = SeeNow.Extention.GetPropertyValueByName("SecondMenu", item);
+        view = SeeNow.Extention.GetPropertyValueByName("View", item);
+        page = SeeNow.Extention.GetPropertyValueByName("Page", item);
+        secondParentId = SeeNow.Extention.GetPropertyValueByName("SecondParentId", item);
+
+
+
+        if (tempId != id)
+        {
+
+            tempId = id;
+
+            @Html.Raw("<li class='treeview is -expanded'>");
+            @Html.Raw("<a class='app - menu__item' href='#' data-toggle='treeview'><i class='app-menu__icon fa fa-laptop'></i><span class='app-menu__label'>" + topMenu + "</span><i class='treeview-indicator fa fa-angle-right'></i></a>");
+        }
+
+        @Html.Raw("<ul class='treeview - menu'>");
+        @Html.Raw("<li><a class='treeview - item' href=" + Url.Action(page, view) + "><i class='icon fa fa - circle - o'></i> " + secondMenu + "</a></li>");
+        @Html.Raw("</ul>");
+
+        if (tempId != id)
+        {
+            @Html.Raw("</li>");
+        }
+    }
+</ul>*@

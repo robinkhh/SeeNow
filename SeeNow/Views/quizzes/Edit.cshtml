@@ -1,0 +1,140 @@
+﻿@model SeeNow.Models.quizzes
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>quizzes</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.quiz_guid)
+
+        <div class="form-group">
+            @Html.Label("題型", htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.type_id, "type_id", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.DropDownList("type_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.type_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.tittle_text, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("問題內容", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tittle_text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tittle_text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.title_img_path, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("圖片", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title_img_path, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title_img_path, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.title_video_path, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("影片", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title_video_path, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title_video_path, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.difficulty_id, "difficulty_id", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("難易", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownList("difficulty_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.difficulty_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.time, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("時間", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.score, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("分數", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.score, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.score, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.energy, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("能量", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.energy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.energy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.visible, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("可見", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.visible)
+                    @Html.ValidationMessageFor(model => model.visible, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.like_num, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("讚", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.like_num, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.like_num, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.quiz_group, "quiz_group", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("題組", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownList("quiz_group", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.quiz_group, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,39 @@
+﻿
+@{
+    int i = 0;
+}
+
+@foreach (var item in @ViewBag.topsix)
+{
+    i= i + 1;
+
+        <!-- Portfolio Modal @i -->
+        <div class="portfolio-modal mfp-hide" id="portfolio-modal-@i">
+            <div class="portfolio-modal-dialog bg-white">
+                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                    <i class="fa fa-3x fa-times"></i>
+                </a>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2 class="@*text-secondary*@ text-uppercase mb-0 font-italic font-weight-bold display-2">@Extention.GetPropertyValueByName("nick_name", item)</h2>
+                            <hr class="star-dark mb-5">
+                            @*<img class="img-fluid mb-5" src="~/Image/freelancer/portfolio/cabin.png" alt="">*@
+                            <img class="img-fluid mb-5" src="~/Image/@Extention.GetPropertyValueByName("profile_path",item)" alt="" />
+                            <p class="mb-5 font-italic font-weight-bold display-4">目前積分: @Extention.GetPropertyValueByName("score", item) 分</p>
+                            @*<p class="mb-5 font-italic font-weight-bold display-4">目前精力:80</p>*@
+                            <p class="mb-5 font-italic font-weight-bold display-4">排名:第 @i 位</p>
+                            @*<a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                    <i class="fa fa-close"></i>
+                                    關閉
+                                </a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    }

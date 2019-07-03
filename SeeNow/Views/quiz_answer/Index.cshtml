@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SeeNow.Models.quiz_answer>
+
+@{
+    ViewBag.Title = "後台管理--遊戲答案";
+}
+
+<h2>後台管理--遊戲答案</h2>
+
+<p>
+    @Html.ActionLink("新增遊戲答案", "Create")
+</p>
+<table class="table table-striped table-warning table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.quiz_guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answer_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answer_text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answer_img_path)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_correct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quizzes.type_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type.type_desc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.quiz_guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answer_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answer_text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answer_img_path)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_correct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quizzes.type_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type.type_desc)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

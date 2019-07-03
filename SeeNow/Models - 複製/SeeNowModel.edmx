@@ -1,0 +1,3097 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SeeNowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="announcement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="content" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="publish_time" Type="datetime" Nullable="false" />
+          <Property Name="priority" Type="int" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'SeeNow.dbo.announcement_log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="announcement_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="id" />
+            
+            
+            
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="content" Type="nvarchar" MaxLength="255" />
+          <Property Name="publish_time" Type="datetime" />
+          <Property Name="priority" Type="int" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bag">
+          <Key>
+            <PropertyRef Name="account" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="product_id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="remaining_quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="buy_list">
+          <Key>
+            <PropertyRef Name="account" />
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="quid" />
+          </Key>
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="product_id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="quid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number" Type="smallint" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_desc" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'SeeNow.dbo.category_log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="category_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="category_id" />
+            
+            
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="category_desc" Type="nvarchar" MaxLength="30" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="classes">
+          <Key>
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="class_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="teacher_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="class_name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="class_code" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="classes_member">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="student_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="class_id" Type="int" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="difficulty_level">
+          <Key>
+            <PropertyRef Name="difficulty_id" />
+          </Key>
+          <Property Name="difficulty_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="difficulty_desc" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'SeeNow.dbo.difficulty_level_log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="difficulty_level_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="difficulty_id" />
+            
+            
+            
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="difficulty_id" Type="smallint" Nullable="false" />
+          <Property Name="difficulty_desc" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="friendship">
+          <Key>
+            <PropertyRef Name="friend_id" />
+            <PropertyRef Name="account" />
+          </Key>
+          <Property Name="friend_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="frontend_menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_name_tw" Type="nvarchar" MaxLength="30" />
+          <Property Name="controller" Type="nvarchar" MaxLength="30" />
+          <Property Name="action" Type="nvarchar" MaxLength="30" />
+          <Property Name="point" Type="nvarchar" MaxLength="30" />
+          <Property Name="is_parent" Type="bit" Nullable="false" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="order_num" Type="int" />
+          <Property Name="teacher_auth" Type="bit" Nullable="false" />
+          <Property Name="student_auth" Type="bit" Nullable="false" />
+          <Property Name="parent_auth" Type="bit" Nullable="false" />
+          <Property Name="guest_auth" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="guardianship">
+          <Key>
+            <PropertyRef Name="parent_id" />
+            <PropertyRef Name="account" />
+          </Key>
+          <Property Name="parent_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="like_record">
+          <Key>
+            <PropertyRef Name="account" />
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="quiz_guid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mall">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="product_desc" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="img_path" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="used_img_path" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'SeeNow.dbo.mall_log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="mall_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="product_id" />
+            
+            
+            
+            
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="product_id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="product_desc" Type="nvarchar" MaxLength="20" />
+          <Property Name="price" Type="int" />
+          <Property Name="active" Type="bit" />
+          <Property Name="img_path" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="used_img_path" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="manager_id" />
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="message_guid" />
+          </Key>
+          <Property Name="message_guid" Type="bigint" Nullable="false" />
+          <Property Name="from_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="to_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="msg" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="read_flag" Type="bit" />
+          <Property Name="delete_flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="play_record">
+          <Key>
+            <PropertyRef Name="play_guid" />
+            <PropertyRef Name="account" />
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="play_guid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="score" Type="int" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="quiz_guid" Type="int" Nullable="false" />
+          <Property Name="round_no" Type="int" />
+        </EntityType>
+        <EntityType Name="play_record_answer">
+          <Key>
+            <PropertyRef Name="play_guid" />
+            <PropertyRef Name="account" />
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="play_guid" Type="int" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="select_answer" Type="int" Nullable="false" />
+          <Property Name="quiz_guid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="post_quid" />
+          </Key>
+          <Property Name="post_quid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="quiz_guid" Type="int" Nullable="false" />
+          <Property Name="content" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="lock_flag" Type="bit" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="post_violations">
+          <Key>
+            <PropertyRef Name="violation_quid" />
+          </Key>
+          <Property Name="violation_quid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reporter_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="post_quid" Type="int" Nullable="false" />
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="check_flag" Type="bit" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="violation_reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="profile_id" />
+          </Key>
+          <Property Name="profile_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="profile_name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="profile_path" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'SeeNow.dbo.profile_log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="profile_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="profile_id" />
+            
+            
+            
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="profile_id" Type="smallint" Nullable="false" />
+          <Property Name="profile_name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="profile_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quiz_answer">
+          <Key>
+            <PropertyRef Name="quiz_guid" />
+            <PropertyRef Name="answer_id" />
+          </Key>
+          <Property Name="quiz_guid" Type="int" Nullable="false" />
+          <Property Name="answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="answer_text" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="answer_img_path" Type="varchar" MaxLength="200" />
+          <Property Name="is_correct" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quiz_group">
+          <Key>
+            <PropertyRef Name="quiz_group" />
+          </Key>
+          <Property Name="quiz_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="group_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quiz_violations">
+          <Key>
+            <PropertyRef Name="violation_quid" />
+          </Key>
+          <Property Name="violation_quid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reporter_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="quiz_guid" Type="int" Nullable="false" />
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="check_flag" Type="bit" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="violation_reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quizzes">
+          <Key>
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="quiz_guid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="tittle_text" Type="nvarchar" MaxLength="50" />
+          <Property Name="title_img_path" Type="varchar" MaxLength="200" />
+          <Property Name="title_video_path" Type="varchar" MaxLength="255" />
+          <Property Name="difficulty_id" Type="smallint" Nullable="false" />
+          <Property Name="time" Type="int" Nullable="false" />
+          <Property Name="score" Type="smallint" Nullable="false" />
+          <Property Name="energy" Type="int" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="like_num" Type="int" Nullable="false" />
+          <Property Name="quiz_group" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="role_desc" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'SeeNow.dbo.role_log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="role_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="role_id" />
+            
+            
+          </Key>
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="role_id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="role_desc" Type="nvarchar" MaxLength="20" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="setting_menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_name_tw" Type="nvarchar" MaxLength="30" />
+          <Property Name="view" Type="nvarchar" MaxLength="30" />
+          <Property Name="page" Type="nvarchar" MaxLength="30" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="order_num" Type="int" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="type_desc" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="use_record">
+          <Key>
+            <PropertyRef Name="use_guid" />
+            <PropertyRef Name="account" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="use_guid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="product_id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="used_quantity" Type="int" Nullable="false" />
+          <Property Name="message_guid" Type="bigint" />
+          <Property Name="quiz_guid" Type="int" />
+        </EntityType>
+        <EntityType Name="user_violations">
+          <Key>
+            <PropertyRef Name="violation_quid" />
+          </Key>
+          <Property Name="violation_quid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="repoter_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="report_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="manager_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="check_flag" Type="bit" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+          <Property Name="violation_reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="account" />
+          </Key>
+          <Property Name="account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="role_id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="nick_name" Type="nvarchar" MaxLength="22" Nullable="false" />
+          <Property Name="e_mail" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="score" Type="int" Nullable="false" />
+          <Property Name="energy" Type="int" Nullable="false" />
+          <Property Name="profile_id" Type="smallint" Nullable="false" />
+          <Property Name="bag_number" Type="int" Nullable="false" />
+          <Property Name="lock_flag" Type="bit" Nullable="false" />
+          <Property Name="validation_flag" Type="bit" Nullable="false" />
+          <Property Name="resetable" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__announcem__manag__31B762FC">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="announcement_log" Type="Self.announcement_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="announcement_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__announcement__id__395884C4">
+          <End Role="announcement" Type="Self.announcement" Multiplicity="1" />
+          <End Role="announcement_log" Type="Self.announcement_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announcement">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="announcement_log">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bag__account__123EB7A3">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="bag" Type="Self.bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="bag">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bag__product_id__17F790F9">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="bag" Type="Self.bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="bag">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buy_list__accoun__0D7A0286">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="buy_list" Type="Self.buy_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="buy_list">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buy_list__produc__17036CC0">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="buy_list" Type="Self.buy_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="buy_list">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__category___categ__2739D489">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="category_log" Type="Self.category_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="category_log">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__category___manag__2CF2ADDF">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="category_log" Type="Self.category_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="category_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__classes__teacher__114A936A">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="classes">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__classes_m__class__2BC97F7C">
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
+          <End Role="classes_member" Type="Self.classes_member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="class_id" />
+            </Principal>
+            <Dependent Role="classes_member">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__classes_m__stude__10566F31">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="classes_member" Type="Self.classes_member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="classes_member">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__difficult__diffi__29221CFB">
+          <End Role="difficulty_level" Type="Self.difficulty_level" Multiplicity="1" />
+          <End Role="difficulty_level_log" Type="Self.difficulty_level_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difficulty_level">
+              <PropertyRef Name="difficulty_id" />
+            </Principal>
+            <Dependent Role="difficulty_level_log">
+              <PropertyRef Name="difficulty_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__difficult__manag__2EDAF651">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="difficulty_level_log" Type="Self.difficulty_level_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="difficulty_level_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__friendshi__accou__0A9D95DB">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="friendship" Type="Self.friendship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="friendship">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__guardians__accou__0B91BA14">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="guardianship" Type="Self.guardianship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="guardianship">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__like_reco__accou__0E6E26BF">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="like_record" Type="Self.like_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="like_record">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__like_reco__quiz___1CBC4616">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="like_record" Type="Self.like_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="like_record">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mall_log__manage__2BFE89A6">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="mall_log" Type="Self.mall_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="mall_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mall_log__produc__2645B050">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="mall_log" Type="Self.mall_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="mall_log">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__message__from_id__0C85DE4D">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="message" Type="Self.message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="message">
+              <PropertyRef Name="from_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__message__to_id__151B244E">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="message" Type="Self.message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="message">
+              <PropertyRef Name="to_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__play_record_answ__22751F6C">
+          <End Role="play_record" Type="Self.play_record" Multiplicity="1" />
+          <End Role="play_record_answer" Type="Self.play_record_answer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="play_record">
+              <PropertyRef Name="play_guid" />
+              <PropertyRef Name="account" />
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="play_record_answer">
+              <PropertyRef Name="play_guid" />
+              <PropertyRef Name="account" />
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post__account__3A179ED3">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post__quiz_guid__1EA48E88">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post_viol__manag__2B0A656D">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="post_violations" Type="Self.post_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="post_violations">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post_viol__post___367C1819">
+          <End Role="post" Type="Self.post" Multiplicity="1" />
+          <End Role="post_violations" Type="Self.post_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_quid" />
+            </Principal>
+            <Dependent Role="post_violations">
+              <PropertyRef Name="post_quid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post_viol__repor__3493CFA7">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="post_violations" Type="Self.post_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="post_violations">
+              <PropertyRef Name="reporter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__profile_l__manag__30C33EC3">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="profile_log" Type="Self.profile_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="profile_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__profile_l__profi__3864608B">
+          <End Role="profile" Type="Self.profile" Multiplicity="1" />
+          <End Role="profile_log" Type="Self.profile_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profile">
+              <PropertyRef Name="profile_id" />
+            </Principal>
+            <Dependent Role="profile_log">
+              <PropertyRef Name="profile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_answ__quiz___1DB06A4F">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="quiz_answer" Type="Self.quiz_answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="quiz_answer">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_answ__type___25518C17">
+          <End Role="type" Type="Self.type" Multiplicity="1" />
+          <End Role="quiz_answer" Type="Self.quiz_answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="quiz_answer">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_grou__accou__14270015">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="quiz_group" Type="Self.quiz_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="quiz_group">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_grou__categ__318258D2">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="quiz_group" Type="Self.quiz_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="quiz_group">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_viol__manag__2FCF1A8A">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="quiz_violations" Type="Self.quiz_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="quiz_violations">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_viol__quiz___37703C52">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="quiz_violations" Type="Self.quiz_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="quiz_violations">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_viol__repor__3587F3E0">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="quiz_violations" Type="Self.quiz_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="quiz_violations">
+              <PropertyRef Name="reporter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quizzes__difficu__1BC821DD">
+          <End Role="difficulty_level" Type="Self.difficulty_level" Multiplicity="1" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difficulty_level">
+              <PropertyRef Name="difficulty_id" />
+            </Principal>
+            <Dependent Role="quizzes">
+              <PropertyRef Name="difficulty_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quizzes__quiz_gr__236943A5">
+          <End Role="quiz_group" Type="Self.quiz_group" Multiplicity="1" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quiz_group">
+              <PropertyRef Name="quiz_group" />
+            </Principal>
+            <Dependent Role="quizzes">
+              <PropertyRef Name="quiz_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quizzes__type_id__245D67DE">
+          <End Role="type" Type="Self.type" Multiplicity="1" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="quizzes">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__role_log__manage__2DE6D218">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="role_log" Type="Self.role_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="role_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__role_log__role_i__282DF8C2">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="role_log" Type="Self.role_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="role_log">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__accou__1332DBDC">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__messa__160F4887">
+          <End Role="message" Type="Self.message" Multiplicity="0..1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="message">
+              <PropertyRef Name="message_guid" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="message_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__produ__18EBB532">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__quiz___208CD6FA">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="0..1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_viol__manag__2A164134">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="user_violations" Type="Self.user_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="user_violations">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_viol__repor__339FAB6E">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="user_violations" Type="Self.user_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="user_violations">
+              <PropertyRef Name="report_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_viol__repot__32AB8735">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="user_violations" Type="Self.user_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="user_violations">
+              <PropertyRef Name="repoter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__profile_i__32767D0B">
+          <End Role="profile" Type="Self.profile" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profile">
+              <PropertyRef Name="profile_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="profile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__role_id__1AD3FDA4">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SeeNowModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="announcement" EntityType="Self.announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bag" EntityType="Self.bag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="buy_list" EntityType="Self.buy_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="classes" EntityType="Self.classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="classes_member" EntityType="Self.classes_member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="difficulty_level" EntityType="Self.difficulty_level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="friendship" EntityType="Self.friendship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="frontend_menu" EntityType="Self.frontend_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="guardianship" EntityType="Self.guardianship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="like_record" EntityType="Self.like_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mall" EntityType="Self.mall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manager" EntityType="Self.manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="play_record" EntityType="Self.play_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="play_record_answer" EntityType="Self.play_record_answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="post" EntityType="Self.post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="post_violations" EntityType="Self.post_violations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profile" EntityType="Self.profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quiz_answer" EntityType="Self.quiz_answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quiz_group" EntityType="Self.quiz_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quiz_violations" EntityType="Self.quiz_violations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quizzes" EntityType="Self.quizzes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="setting_menu" EntityType="Self.setting_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type" EntityType="Self.type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="use_record" EntityType="Self.use_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_violations" EntityType="Self.user_violations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="announcement_log" EntityType="Self.announcement_log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [announcement_log].[manager_id] AS [manager_id], 
+    [announcement_log].[id] AS [id], 
+    [announcement_log].[title] AS [title], 
+    [announcement_log].[content] AS [content], 
+    [announcement_log].[publish_time] AS [publish_time], 
+    [announcement_log].[priority] AS [priority], 
+    [announcement_log].[status] AS [status], 
+    [announcement_log].[datetime] AS [datetime]
+    FROM [dbo].[announcement_log] AS [announcement_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="category_log" EntityType="Self.category_log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [category_log].[manager_id] AS [manager_id], 
+    [category_log].[category_id] AS [category_id], 
+    [category_log].[category_desc] AS [category_desc], 
+    [category_log].[status] AS [status], 
+    [category_log].[datetime] AS [datetime]
+    FROM [dbo].[category_log] AS [category_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="difficulty_level_log" EntityType="Self.difficulty_level_log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [difficulty_level_log].[manager_id] AS [manager_id], 
+    [difficulty_level_log].[difficulty_id] AS [difficulty_id], 
+    [difficulty_level_log].[difficulty_desc] AS [difficulty_desc], 
+    [difficulty_level_log].[status] AS [status], 
+    [difficulty_level_log].[datetime] AS [datetime]
+    FROM [dbo].[difficulty_level_log] AS [difficulty_level_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="mall_log" EntityType="Self.mall_log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [mall_log].[manager_id] AS [manager_id], 
+    [mall_log].[product_id] AS [product_id], 
+    [mall_log].[product_desc] AS [product_desc], 
+    [mall_log].[price] AS [price], 
+    [mall_log].[active] AS [active], 
+    [mall_log].[img_path] AS [img_path], 
+    [mall_log].[used_img_path] AS [used_img_path], 
+    [mall_log].[status] AS [status], 
+    [mall_log].[datetime] AS [datetime]
+    FROM [dbo].[mall_log] AS [mall_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="profile_log" EntityType="Self.profile_log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [profile_log].[manager_id] AS [manager_id], 
+    [profile_log].[profile_id] AS [profile_id], 
+    [profile_log].[profile_name] AS [profile_name], 
+    [profile_log].[profile_path] AS [profile_path], 
+    [profile_log].[status] AS [status], 
+    [profile_log].[datetime] AS [datetime]
+    FROM [dbo].[profile_log] AS [profile_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="role_log" EntityType="Self.role_log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [role_log].[manager_id] AS [manager_id], 
+    [role_log].[role_id] AS [role_id], 
+    [role_log].[role_desc] AS [role_desc], 
+    [role_log].[status] AS [status], 
+    [role_log].[datetime] AS [datetime]
+    FROM [dbo].[role_log] AS [role_log]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__announcem__manag__31B762FC" Association="Self.FK__announcem__manag__31B762FC">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="announcement_log" EntitySet="announcement_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__announcement__id__395884C4" Association="Self.FK__announcement__id__395884C4">
+            <End Role="announcement" EntitySet="announcement" />
+            <End Role="announcement_log" EntitySet="announcement_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bag__account__123EB7A3" Association="Self.FK__bag__account__123EB7A3">
+            <End Role="users" EntitySet="users" />
+            <End Role="bag" EntitySet="bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bag__product_id__17F790F9" Association="Self.FK__bag__product_id__17F790F9">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="bag" EntitySet="bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buy_list__accoun__0D7A0286" Association="Self.FK__buy_list__accoun__0D7A0286">
+            <End Role="users" EntitySet="users" />
+            <End Role="buy_list" EntitySet="buy_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buy_list__produc__17036CC0" Association="Self.FK__buy_list__produc__17036CC0">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="buy_list" EntitySet="buy_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK__category___categ__2739D489" Association="Self.FK__category___categ__2739D489">
+            <End Role="category" EntitySet="category" />
+            <End Role="category_log" EntitySet="category_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__category___manag__2CF2ADDF" Association="Self.FK__category___manag__2CF2ADDF">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="category_log" EntitySet="category_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__classes__teacher__114A936A" Association="Self.FK__classes__teacher__114A936A">
+            <End Role="users" EntitySet="users" />
+            <End Role="classes" EntitySet="classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__classes_m__class__2BC97F7C" Association="Self.FK__classes_m__class__2BC97F7C">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="classes_member" EntitySet="classes_member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__classes_m__stude__10566F31" Association="Self.FK__classes_m__stude__10566F31">
+            <End Role="users" EntitySet="users" />
+            <End Role="classes_member" EntitySet="classes_member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__difficult__diffi__29221CFB" Association="Self.FK__difficult__diffi__29221CFB">
+            <End Role="difficulty_level" EntitySet="difficulty_level" />
+            <End Role="difficulty_level_log" EntitySet="difficulty_level_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__difficult__manag__2EDAF651" Association="Self.FK__difficult__manag__2EDAF651">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="difficulty_level_log" EntitySet="difficulty_level_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__friendshi__accou__0A9D95DB" Association="Self.FK__friendshi__accou__0A9D95DB">
+            <End Role="users" EntitySet="users" />
+            <End Role="friendship" EntitySet="friendship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__guardians__accou__0B91BA14" Association="Self.FK__guardians__accou__0B91BA14">
+            <End Role="users" EntitySet="users" />
+            <End Role="guardianship" EntitySet="guardianship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__like_reco__accou__0E6E26BF" Association="Self.FK__like_reco__accou__0E6E26BF">
+            <End Role="users" EntitySet="users" />
+            <End Role="like_record" EntitySet="like_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__like_reco__quiz___1CBC4616" Association="Self.FK__like_reco__quiz___1CBC4616">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="like_record" EntitySet="like_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mall_log__manage__2BFE89A6" Association="Self.FK__mall_log__manage__2BFE89A6">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="mall_log" EntitySet="mall_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mall_log__produc__2645B050" Association="Self.FK__mall_log__produc__2645B050">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="mall_log" EntitySet="mall_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__message__from_id__0C85DE4D" Association="Self.FK__message__from_id__0C85DE4D">
+            <End Role="users" EntitySet="users" />
+            <End Role="message" EntitySet="message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__message__to_id__151B244E" Association="Self.FK__message__to_id__151B244E">
+            <End Role="users" EntitySet="users" />
+            <End Role="message" EntitySet="message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__play_record_answ__22751F6C" Association="Self.FK__play_record_answ__22751F6C">
+            <End Role="play_record" EntitySet="play_record" />
+            <End Role="play_record_answer" EntitySet="play_record_answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post__account__3A179ED3" Association="Self.FK__post__account__3A179ED3">
+            <End Role="users" EntitySet="users" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post__quiz_guid__1EA48E88" Association="Self.FK__post__quiz_guid__1EA48E88">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post_viol__manag__2B0A656D" Association="Self.FK__post_viol__manag__2B0A656D">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="post_violations" EntitySet="post_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post_viol__post___367C1819" Association="Self.FK__post_viol__post___367C1819">
+            <End Role="post" EntitySet="post" />
+            <End Role="post_violations" EntitySet="post_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post_viol__repor__3493CFA7" Association="Self.FK__post_viol__repor__3493CFA7">
+            <End Role="users" EntitySet="users" />
+            <End Role="post_violations" EntitySet="post_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__profile_l__manag__30C33EC3" Association="Self.FK__profile_l__manag__30C33EC3">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="profile_log" EntitySet="profile_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__profile_l__profi__3864608B" Association="Self.FK__profile_l__profi__3864608B">
+            <End Role="profile" EntitySet="profile" />
+            <End Role="profile_log" EntitySet="profile_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_answ__quiz___1DB06A4F" Association="Self.FK__quiz_answ__quiz___1DB06A4F">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="quiz_answer" EntitySet="quiz_answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_answ__type___25518C17" Association="Self.FK__quiz_answ__type___25518C17">
+            <End Role="type" EntitySet="type" />
+            <End Role="quiz_answer" EntitySet="quiz_answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_grou__accou__14270015" Association="Self.FK__quiz_grou__accou__14270015">
+            <End Role="users" EntitySet="users" />
+            <End Role="quiz_group" EntitySet="quiz_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_grou__categ__318258D2" Association="Self.FK__quiz_grou__categ__318258D2">
+            <End Role="category" EntitySet="category" />
+            <End Role="quiz_group" EntitySet="quiz_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_viol__manag__2FCF1A8A" Association="Self.FK__quiz_viol__manag__2FCF1A8A">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="quiz_violations" EntitySet="quiz_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_viol__quiz___37703C52" Association="Self.FK__quiz_viol__quiz___37703C52">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="quiz_violations" EntitySet="quiz_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_viol__repor__3587F3E0" Association="Self.FK__quiz_viol__repor__3587F3E0">
+            <End Role="users" EntitySet="users" />
+            <End Role="quiz_violations" EntitySet="quiz_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quizzes__difficu__1BC821DD" Association="Self.FK__quizzes__difficu__1BC821DD">
+            <End Role="difficulty_level" EntitySet="difficulty_level" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quizzes__quiz_gr__236943A5" Association="Self.FK__quizzes__quiz_gr__236943A5">
+            <End Role="quiz_group" EntitySet="quiz_group" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quizzes__type_id__245D67DE" Association="Self.FK__quizzes__type_id__245D67DE">
+            <End Role="type" EntitySet="type" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__role_log__manage__2DE6D218" Association="Self.FK__role_log__manage__2DE6D218">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="role_log" EntitySet="role_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__role_log__role_i__282DF8C2" Association="Self.FK__role_log__role_i__282DF8C2">
+            <End Role="role" EntitySet="role" />
+            <End Role="role_log" EntitySet="role_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__accou__1332DBDC" Association="Self.FK__use_recor__accou__1332DBDC">
+            <End Role="users" EntitySet="users" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__messa__160F4887" Association="Self.FK__use_recor__messa__160F4887">
+            <End Role="message" EntitySet="message" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__produ__18EBB532" Association="Self.FK__use_recor__produ__18EBB532">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__quiz___208CD6FA" Association="Self.FK__use_recor__quiz___208CD6FA">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_viol__manag__2A164134" Association="Self.FK__user_viol__manag__2A164134">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="user_violations" EntitySet="user_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_viol__repor__339FAB6E" Association="Self.FK__user_viol__repor__339FAB6E">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_violations" EntitySet="user_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_viol__repot__32AB8735" Association="Self.FK__user_viol__repot__32AB8735">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_violations" EntitySet="user_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__profile_i__32767D0B" Association="Self.FK__users__profile_i__32767D0B">
+            <End Role="profile" EntitySet="profile" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__role_id__1AD3FDA4" Association="Self.FK__users__role_id__1AD3FDA4">
+            <End Role="role" EntitySet="role" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SeeNowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="announcement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publish_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="priority" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="announcement_log" Relationship="Self.FK__announcement__id__395884C4" FromRole="announcement" ToRole="announcement_log" />
+        </EntityType>
+        <EntityType Name="announcement_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="publish_time" Type="DateTime" Precision="3" />
+          <Property Name="priority" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="announcement" Relationship="Self.FK__announcement__id__395884C4" FromRole="announcement_log" ToRole="announcement" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__announcem__manag__31B762FC" FromRole="announcement_log" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="bag">
+          <Key>
+            <PropertyRef Name="account" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="remaining_quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__bag__account__123EB7A3" FromRole="bag" ToRole="users" />
+          <NavigationProperty Name="mall" Relationship="Self.FK__bag__product_id__17F790F9" FromRole="bag" ToRole="mall" />
+        </EntityType>
+        <EntityType Name="buy_list">
+          <Key>
+            <PropertyRef Name="account" />
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="quid" />
+          </Key>
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="quid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="Int16" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="users" Relationship="Self.FK__buy_list__accoun__0D7A0286" FromRole="buy_list" ToRole="users" />
+          <NavigationProperty Name="mall" Relationship="Self.FK__buy_list__produc__17036CC0" FromRole="buy_list" ToRole="mall" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_desc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="category_log" Relationship="Self.FK__category___categ__2739D489" FromRole="category" ToRole="category_log" />
+          <NavigationProperty Name="quiz_group" Relationship="Self.FK__quiz_grou__categ__318258D2" FromRole="category" ToRole="quiz_group" />
+        </EntityType>
+        <EntityType Name="category_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="category_desc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="category" Relationship="Self.FK__category___categ__2739D489" FromRole="category_log" ToRole="category" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__category___manag__2CF2ADDF" FromRole="category_log" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="classes">
+          <Key>
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="class_id" Type="Int32" Nullable="false" />
+          <Property Name="teacher_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="class_name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="class_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__classes__teacher__114A936A" FromRole="classes" ToRole="users" />
+          <NavigationProperty Name="classes_member" Relationship="Self.FK__classes_m__class__2BC97F7C" FromRole="classes" ToRole="classes_member" />
+        </EntityType>
+        <EntityType Name="classes_member">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="student_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="class_id" Type="Int32" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="classes" Relationship="Self.FK__classes_m__class__2BC97F7C" FromRole="classes_member" ToRole="classes" />
+          <NavigationProperty Name="users" Relationship="Self.FK__classes_m__stude__10566F31" FromRole="classes_member" ToRole="users" />
+        </EntityType>
+        <EntityType Name="difficulty_level">
+          <Key>
+            <PropertyRef Name="difficulty_id" />
+          </Key>
+          <Property Name="difficulty_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="difficulty_desc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="difficulty_level_log" Relationship="Self.FK__difficult__diffi__29221CFB" FromRole="difficulty_level" ToRole="difficulty_level_log" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__quizzes__difficu__1BC821DD" FromRole="difficulty_level" ToRole="quizzes" />
+        </EntityType>
+        <EntityType Name="difficulty_level_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="difficulty_id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="difficulty_id" Type="Int16" Nullable="false" />
+          <Property Name="difficulty_desc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="difficulty_level" Relationship="Self.FK__difficult__diffi__29221CFB" FromRole="difficulty_level_log" ToRole="difficulty_level" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__difficult__manag__2EDAF651" FromRole="difficulty_level_log" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="friendship">
+          <Key>
+            <PropertyRef Name="friend_id" />
+            <PropertyRef Name="account" />
+          </Key>
+          <Property Name="friend_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__friendshi__accou__0A9D95DB" FromRole="friendship" ToRole="users" />
+        </EntityType>
+        <EntityType Name="guardianship">
+          <Key>
+            <PropertyRef Name="parent_id" />
+            <PropertyRef Name="account" />
+          </Key>
+          <Property Name="parent_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__guardians__accou__0B91BA14" FromRole="guardianship" ToRole="users" />
+        </EntityType>
+        <EntityType Name="mall">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="product_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="used_img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="bag" Relationship="Self.FK__bag__product_id__17F790F9" FromRole="mall" ToRole="bag" />
+          <NavigationProperty Name="buy_list" Relationship="Self.FK__buy_list__produc__17036CC0" FromRole="mall" ToRole="buy_list" />
+          <NavigationProperty Name="mall_log" Relationship="Self.FK__mall_log__produc__2645B050" FromRole="mall" ToRole="mall_log" />
+          <NavigationProperty Name="use_record" Relationship="Self.FK__use_recor__produ__18EBB532" FromRole="mall" ToRole="use_record" />
+        </EntityType>
+        <EntityType Name="mall_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="product_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="used_img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="mall" Relationship="Self.FK__mall_log__produc__2645B050" FromRole="mall_log" ToRole="mall" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__mall_log__manage__2BFE89A6" FromRole="mall_log" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="manager_id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="announcement_log" Relationship="Self.FK__announcem__manag__31B762FC" FromRole="manager" ToRole="announcement_log" />
+          <NavigationProperty Name="category_log" Relationship="Self.FK__category___manag__2CF2ADDF" FromRole="manager" ToRole="category_log" />
+          <NavigationProperty Name="difficulty_level_log" Relationship="Self.FK__difficult__manag__2EDAF651" FromRole="manager" ToRole="difficulty_level_log" />
+          <NavigationProperty Name="mall_log" Relationship="Self.FK__mall_log__manage__2BFE89A6" FromRole="manager" ToRole="mall_log" />
+          <NavigationProperty Name="post_violations" Relationship="Self.FK__post_viol__manag__2B0A656D" FromRole="manager" ToRole="post_violations" />
+          <NavigationProperty Name="profile_log" Relationship="Self.FK__profile_l__manag__30C33EC3" FromRole="manager" ToRole="profile_log" />
+          <NavigationProperty Name="quiz_violations" Relationship="Self.FK__quiz_viol__manag__2FCF1A8A" FromRole="manager" ToRole="quiz_violations" />
+          <NavigationProperty Name="role_log" Relationship="Self.FK__role_log__manage__2DE6D218" FromRole="manager" ToRole="role_log" />
+          <NavigationProperty Name="user_violations" Relationship="Self.FK__user_viol__manag__2A164134" FromRole="manager" ToRole="user_violations" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="message_guid" />
+          </Key>
+          <Property Name="message_guid" Type="Int64" Nullable="false" />
+          <Property Name="from_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="to_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="msg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="read_flag" Type="Boolean" />
+          <Property Name="delete_flag" Type="Boolean" />
+          <NavigationProperty Name="users" Relationship="Self.FK__message__from_id__0C85DE4D" FromRole="message" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK__message__to_id__151B244E" FromRole="message" ToRole="users" />
+          <NavigationProperty Name="use_record" Relationship="Self.FK__use_recor__messa__160F4887" FromRole="message" ToRole="use_record" />
+        </EntityType>
+        <EntityType Name="play_record">
+          <Key>
+            <PropertyRef Name="play_guid" />
+            <PropertyRef Name="account" />
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="play_guid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="score" Type="Int32" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="quiz_guid" Type="Int32" Nullable="false" />
+          <Property Name="round_no" Type="Int32"  />
+          <NavigationProperty Name="users" Relationship="Self.FK__play_reco__accou__0F624AF8" FromRole="play_record" ToRole="users" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__play_reco__quiz___1F98B2C1" FromRole="play_record" ToRole="quizzes" />
+          <NavigationProperty Name="play_record_answer" Relationship="Self.FK__play_record_answ__22751F6C" FromRole="play_record" ToRole="play_record_answer" />
+        </EntityType>
+        <EntityType Name="play_record_answer">
+          <Key>
+            <PropertyRef Name="play_guid" />
+            <PropertyRef Name="account" />
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="play_guid" Type="Int32" Nullable="false" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="select_answer" Type="Int32" Nullable="false" />
+          <Property Name="quiz_guid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="play_record" Relationship="Self.FK__play_record_answ__22751F6C" FromRole="play_record_answer" ToRole="play_record" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="post_quid" />
+          </Key>
+          <Property Name="post_quid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quiz_guid" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="lock_flag" Type="Boolean" Nullable="false" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__post__account__3A179ED3" FromRole="post" ToRole="users" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__post__quiz_guid__1EA48E88" FromRole="post" ToRole="quizzes" />
+          <NavigationProperty Name="post_violations" Relationship="Self.FK__post_viol__post___367C1819" FromRole="post" ToRole="post_violations" />
+        </EntityType>
+        <EntityType Name="post_violations">
+          <Key>
+            <PropertyRef Name="violation_quid" />
+          </Key>
+          <Property Name="violation_quid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reporter_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_quid" Type="Int32" Nullable="false" />
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="check_flag" Type="Boolean" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="violation_reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__post_viol__manag__2B0A656D" FromRole="post_violations" ToRole="manager" />
+          <NavigationProperty Name="post" Relationship="Self.FK__post_viol__post___367C1819" FromRole="post_violations" ToRole="post" />
+          <NavigationProperty Name="users" Relationship="Self.FK__post_viol__repor__3493CFA7" FromRole="post_violations" ToRole="users" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="profile_id" />
+          </Key>
+          <Property Name="profile_id" Type="Int16" Nullable="false" />
+          <Property Name="profile_name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="profile_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="profile_log" Relationship="Self.FK__profile_l__profi__3864608B" FromRole="profile" ToRole="profile_log" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__profile_i__32767D0B" FromRole="profile" ToRole="users" />
+        </EntityType>
+        <EntityType Name="profile_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="profile_id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profile_id" Type="Int16" Nullable="false" />
+          <Property Name="profile_name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="profile_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__profile_l__manag__30C33EC3" FromRole="profile_log" ToRole="manager" />
+          <NavigationProperty Name="profile" Relationship="Self.FK__profile_l__profi__3864608B" FromRole="profile_log" ToRole="profile" />
+        </EntityType>
+        <EntityType Name="quiz_answer">
+          <Key>
+            <PropertyRef Name="quiz_guid" />
+            <PropertyRef Name="answer_id" />
+          </Key>
+          <Property Name="quiz_guid" Type="Int32" Nullable="false" />
+          <Property Name="answer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="answer_text" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="answer_img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="is_correct" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__quiz_answ__quiz___1DB06A4F" FromRole="quiz_answer" ToRole="quizzes" />
+          <NavigationProperty Name="type" Relationship="Self.FK__quiz_answ__type___25518C17" FromRole="quiz_answer" ToRole="type" />
+        </EntityType>
+        <EntityType Name="quiz_group">
+          <Key>
+            <PropertyRef Name="quiz_group1" />
+          </Key>
+          <Property Name="quiz_group1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.FK__quiz_grou__categ__318258D2" FromRole="quiz_group" ToRole="category" />
+          <NavigationProperty Name="users" Relationship="Self.FK__quiz_grou__accou__14270015" FromRole="quiz_group" ToRole="users" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__quizzes__quiz_gr__236943A5" FromRole="quiz_group" ToRole="quizzes" />
+        </EntityType>
+        <EntityType Name="quiz_violations">
+          <Key>
+            <PropertyRef Name="violation_quid" />
+          </Key>
+          <Property Name="violation_quid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reporter_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="quiz_guid" Type="Int32" Nullable="false" />
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="check_flag" Type="Boolean" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="violation_reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__quiz_viol__manag__2FCF1A8A" FromRole="quiz_violations" ToRole="manager" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__quiz_viol__quiz___37703C52" FromRole="quiz_violations" ToRole="quizzes" />
+          <NavigationProperty Name="users" Relationship="Self.FK__quiz_viol__repor__3587F3E0" FromRole="quiz_violations" ToRole="users" />
+        </EntityType>
+        <EntityType Name="quizzes">
+          <Key>
+            <PropertyRef Name="quiz_guid" />
+          </Key>
+          <Property Name="quiz_guid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tittle_text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title_img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="title_video_path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="difficulty_id" Type="Int16" Nullable="false" />
+          <Property Name="time" Type="Int32" Nullable="false" />
+          <Property Name="score" Type="Int16" Nullable="false" />
+          <Property Name="energy" Type="Int32" Nullable="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="like_num" Type="Int32" Nullable="false" />
+          <Property Name="quiz_group" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="difficulty_level" Relationship="Self.FK__quizzes__difficu__1BC821DD" FromRole="quizzes" ToRole="difficulty_level" />
+          <NavigationProperty Name="play_record" Relationship="Self.FK__play_reco__quiz___1F98B2C1" FromRole="quizzes" ToRole="play_record" />
+          <NavigationProperty Name="post" Relationship="Self.FK__post__quiz_guid__1EA48E88" FromRole="quizzes" ToRole="post" />
+          <NavigationProperty Name="quiz_answer" Relationship="Self.FK__quiz_answ__quiz___1DB06A4F" FromRole="quizzes" ToRole="quiz_answer" />
+          <NavigationProperty Name="quiz_group1" Relationship="Self.FK__quizzes__quiz_gr__236943A5" FromRole="quizzes" ToRole="quiz_group" />
+          <NavigationProperty Name="quiz_violations" Relationship="Self.FK__quiz_viol__quiz___37703C52" FromRole="quizzes" ToRole="quiz_violations" />
+          <NavigationProperty Name="type" Relationship="Self.FK__quizzes__type_id__245D67DE" FromRole="quizzes" ToRole="type" />
+          <NavigationProperty Name="use_record" Relationship="Self.FK__use_recor__quiz___208CD6FA" FromRole="quizzes" ToRole="use_record" />
+          <NavigationProperty Name="users" Relationship="Self.like_record" FromRole="quizzes" ToRole="users" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="role_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="role_log" Relationship="Self.FK__role_log__role_i__282DF8C2" FromRole="role" ToRole="role_log" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__1AD3FDA4" FromRole="role" ToRole="users" />
+        </EntityType>
+        <EntityType Name="role_log">
+          <Key>
+            <PropertyRef Name="manager_id" />
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="role_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__role_log__manage__2DE6D218" FromRole="role_log" ToRole="manager" />
+          <NavigationProperty Name="role" Relationship="Self.FK__role_log__role_i__282DF8C2" FromRole="role_log" ToRole="role" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="type_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="quiz_answer" Relationship="Self.FK__quiz_answ__type___25518C17" FromRole="type" ToRole="quiz_answer" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__quizzes__type_id__245D67DE" FromRole="type" ToRole="quizzes" />
+        </EntityType>
+        <EntityType Name="use_record">
+          <Key>
+            <PropertyRef Name="use_guid" />
+            <PropertyRef Name="account" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="use_guid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="used_quantity" Type="Int32" Nullable="false" />
+          <Property Name="message_guid" Type="Int64" />
+          <Property Name="quiz_guid" Type="Int32" />
+          <NavigationProperty Name="mall" Relationship="Self.FK__use_recor__produ__18EBB532" FromRole="use_record" ToRole="mall" />
+          <NavigationProperty Name="message" Relationship="Self.FK__use_recor__messa__160F4887" FromRole="use_record" ToRole="message" />
+          <NavigationProperty Name="quizzes" Relationship="Self.FK__use_recor__quiz___208CD6FA" FromRole="use_record" ToRole="quizzes" />
+          <NavigationProperty Name="users" Relationship="Self.FK__use_recor__accou__1332DBDC" FromRole="use_record" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user_violations">
+          <Key>
+            <PropertyRef Name="violation_quid" />
+          </Key>
+          <Property Name="violation_quid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="repoter_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="report_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="check_flag" Type="Boolean" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="violation_reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__user_viol__manag__2A164134" FromRole="user_violations" ToRole="manager" />
+          <NavigationProperty Name="users" Relationship="Self.FK__user_viol__repor__339FAB6E" FromRole="user_violations" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK__user_viol__repot__32AB8735" FromRole="user_violations" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="account" />
+          </Key>
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nick_name" Type="String" MaxLength="22" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="e_mail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="score" Type="Int32" Nullable="false" />
+          <Property Name="energy" Type="Int32" Nullable="false" />
+          <Property Name="profile_id" Type="Int16" Nullable="false" />
+          <Property Name="bag_number" Type="Int32" Nullable="false" />
+          <Property Name="lock_flag" Type="Boolean" Nullable="false" />
+          <Property Name="validation_flag" Type="Boolean" Nullable="false" />
+          <Property Name="resetable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="bag" Relationship="Self.FK__bag__account__123EB7A3" FromRole="users" ToRole="bag" />
+          <NavigationProperty Name="buy_list" Relationship="Self.FK__buy_list__accoun__0D7A0286" FromRole="users" ToRole="buy_list" />
+          <NavigationProperty Name="classes" Relationship="Self.FK__classes__teacher__114A936A" FromRole="users" ToRole="classes" />
+          <NavigationProperty Name="classes_member" Relationship="Self.FK__classes_m__stude__10566F31" FromRole="users" ToRole="classes_member" />
+          <NavigationProperty Name="friendship" Relationship="Self.FK__friendshi__accou__0A9D95DB" FromRole="users" ToRole="friendship" />
+          <NavigationProperty Name="guardianship" Relationship="Self.FK__guardians__accou__0B91BA14" FromRole="users" ToRole="guardianship" />
+          <NavigationProperty Name="message" Relationship="Self.FK__message__from_id__0C85DE4D" FromRole="users" ToRole="message" />
+          <NavigationProperty Name="msg" Relationship="Self.FK__message__to_id__151B244E" FromRole="users" ToRole="message" />
+          <NavigationProperty Name="play_record" Relationship="Self.FK__play_reco__accou__0F624AF8" FromRole="users" ToRole="play_record" />
+          <NavigationProperty Name="post" Relationship="Self.FK__post__account__3A179ED3" FromRole="users" ToRole="post" />
+          <NavigationProperty Name="post_violations" Relationship="Self.FK__post_viol__repor__3493CFA7" FromRole="users" ToRole="post_violations" />
+          <NavigationProperty Name="profile" Relationship="Self.FK__users__profile_i__32767D0B" FromRole="users" ToRole="profile" />
+          <NavigationProperty Name="quiz_group" Relationship="Self.FK__quiz_grou__accou__14270015" FromRole="users" ToRole="quiz_group" />
+          <NavigationProperty Name="quiz_violations" Relationship="Self.FK__quiz_viol__repor__3587F3E0" FromRole="users" ToRole="quiz_violations" />
+          <NavigationProperty Name="role" Relationship="Self.FK__users__role_id__1AD3FDA4" FromRole="users" ToRole="role" />
+          <NavigationProperty Name="use_record" Relationship="Self.FK__use_recor__accou__1332DBDC" FromRole="users" ToRole="use_record" />
+          <NavigationProperty Name="user_violations" Relationship="Self.FK__user_viol__repor__339FAB6E" FromRole="users" ToRole="user_violations" />
+          <NavigationProperty Name="user_violations1" Relationship="Self.FK__user_viol__repot__32AB8735" FromRole="users" ToRole="user_violations" />
+          <NavigationProperty Name="quizzes" Relationship="Self.like_record" FromRole="users" ToRole="quizzes" />
+        </EntityType>
+        <Association Name="FK__announcement__id__395884C4">
+          <End Role="announcement" Type="Self.announcement" Multiplicity="1" />
+          <End Role="announcement_log" Type="Self.announcement_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announcement">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="announcement_log">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__announcem__manag__31B762FC">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="announcement_log" Type="Self.announcement_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="announcement_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bag__account__123EB7A3">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="bag" Type="Self.bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="bag">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bag__product_id__17F790F9">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="bag" Type="Self.bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="bag">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buy_list__accoun__0D7A0286">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="buy_list" Type="Self.buy_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="buy_list">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buy_list__produc__17036CC0">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="buy_list" Type="Self.buy_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="buy_list">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__category___categ__2739D489">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="category_log" Type="Self.category_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="category_log">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_grou__categ__318258D2">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="quiz_group" Type="Self.quiz_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="quiz_group">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__category___manag__2CF2ADDF">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="category_log" Type="Self.category_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="category_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__classes__teacher__114A936A">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="classes">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__classes_m__class__2BC97F7C">
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
+          <End Role="classes_member" Type="Self.classes_member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="class_id" />
+            </Principal>
+            <Dependent Role="classes_member">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__classes_m__stude__10566F31">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="classes_member" Type="Self.classes_member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="classes_member">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__difficult__diffi__29221CFB">
+          <End Role="difficulty_level" Type="Self.difficulty_level" Multiplicity="1" />
+          <End Role="difficulty_level_log" Type="Self.difficulty_level_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difficulty_level">
+              <PropertyRef Name="difficulty_id" />
+            </Principal>
+            <Dependent Role="difficulty_level_log">
+              <PropertyRef Name="difficulty_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quizzes__difficu__1BC821DD">
+          <End Role="difficulty_level" Type="Self.difficulty_level" Multiplicity="1" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difficulty_level">
+              <PropertyRef Name="difficulty_id" />
+            </Principal>
+            <Dependent Role="quizzes">
+              <PropertyRef Name="difficulty_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__difficult__manag__2EDAF651">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="difficulty_level_log" Type="Self.difficulty_level_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="difficulty_level_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__friendshi__accou__0A9D95DB">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="friendship" Type="Self.friendship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="friendship">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__guardians__accou__0B91BA14">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="guardianship" Type="Self.guardianship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="guardianship">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mall_log__produc__2645B050">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="mall_log" Type="Self.mall_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="mall_log">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__produ__18EBB532">
+          <End Role="mall" Type="Self.mall" Multiplicity="1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mall">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mall_log__manage__2BFE89A6">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="mall_log" Type="Self.mall_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="mall_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post_viol__manag__2B0A656D">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="post_violations" Type="Self.post_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="post_violations">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__profile_l__manag__30C33EC3">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="profile_log" Type="Self.profile_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="profile_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_viol__manag__2FCF1A8A">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="quiz_violations" Type="Self.quiz_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="quiz_violations">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__role_log__manage__2DE6D218">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="role_log" Type="Self.role_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="role_log">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_viol__manag__2A164134">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="user_violations" Type="Self.user_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="user_violations">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__message__from_id__0C85DE4D">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="message" Type="Self.message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="message">
+              <PropertyRef Name="from_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__message__to_id__151B244E">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="message" Type="Self.message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="message">
+              <PropertyRef Name="to_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__messa__160F4887">
+          <End Role="message" Type="Self.message" Multiplicity="0..1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="message">
+              <PropertyRef Name="message_guid" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="message_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__play_reco__accou__0F624AF8">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="play_record" Type="Self.play_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="play_record">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__play_reco__quiz___1F98B2C1">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="play_record" Type="Self.play_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="play_record">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__play_record_answ__22751F6C">
+          <End Role="play_record" Type="Self.play_record" Multiplicity="1" />
+          <End Role="play_record_answer" Type="Self.play_record_answer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="play_record">
+              <PropertyRef Name="play_guid" />
+              <PropertyRef Name="account" />
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="play_record_answer">
+              <PropertyRef Name="play_guid" />
+              <PropertyRef Name="account" />
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post__account__3A179ED3">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post__quiz_guid__1EA48E88">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post_viol__post___367C1819">
+          <End Role="post" Type="Self.post" Multiplicity="1" />
+          <End Role="post_violations" Type="Self.post_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_quid" />
+            </Principal>
+            <Dependent Role="post_violations">
+              <PropertyRef Name="post_quid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__post_viol__repor__3493CFA7">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="post_violations" Type="Self.post_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="post_violations">
+              <PropertyRef Name="reporter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__profile_l__profi__3864608B">
+          <End Role="profile" Type="Self.profile" Multiplicity="1" />
+          <End Role="profile_log" Type="Self.profile_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profile">
+              <PropertyRef Name="profile_id" />
+            </Principal>
+            <Dependent Role="profile_log">
+              <PropertyRef Name="profile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__profile_i__32767D0B">
+          <End Role="profile" Type="Self.profile" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profile">
+              <PropertyRef Name="profile_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="profile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_answ__quiz___1DB06A4F">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="quiz_answer" Type="Self.quiz_answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="quiz_answer">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_answ__type___25518C17">
+          <End Role="type" Type="Self.type" Multiplicity="1" />
+          <End Role="quiz_answer" Type="Self.quiz_answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="quiz_answer">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_grou__accou__14270015">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="quiz_group" Type="Self.quiz_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="quiz_group">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quizzes__quiz_gr__236943A5">
+          <End Role="quiz_group" Type="Self.quiz_group" Multiplicity="1" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quiz_group">
+              <PropertyRef Name="quiz_group1" />
+            </Principal>
+            <Dependent Role="quizzes">
+              <PropertyRef Name="quiz_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_viol__quiz___37703C52">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="1" />
+          <End Role="quiz_violations" Type="Self.quiz_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="quiz_violations">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quiz_viol__repor__3587F3E0">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="quiz_violations" Type="Self.quiz_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="quiz_violations">
+              <PropertyRef Name="reporter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__quizzes__type_id__245D67DE">
+          <End Role="type" Type="Self.type" Multiplicity="1" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="quizzes">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__quiz___208CD6FA">
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="0..1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizzes">
+              <PropertyRef Name="quiz_guid" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="quiz_guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__role_log__role_i__282DF8C2">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="role_log" Type="Self.role_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="role_log">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__role_id__1AD3FDA4">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__use_recor__accou__1332DBDC">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="use_record" Type="Self.use_record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="use_record">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_viol__repor__339FAB6E">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="user_violations" Type="Self.user_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="user_violations">
+              <PropertyRef Name="report_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_viol__repot__32AB8735">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="user_violations" Type="Self.user_violations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="account" />
+            </Principal>
+            <Dependent Role="user_violations">
+              <PropertyRef Name="repoter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="like_record">
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <End Role="quizzes" Type="Self.quizzes" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SeeNowEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin" EntityType="Self.admin" />
+          <EntitySet Name="announcement" EntityType="Self.announcement" />
+          <EntitySet Name="announcement_log" EntityType="Self.announcement_log" />
+          <EntitySet Name="bag" EntityType="Self.bag" />
+          <EntitySet Name="buy_list" EntityType="Self.buy_list" />
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="category_log" EntityType="Self.category_log" />
+          <EntitySet Name="classes" EntityType="Self.classes" />
+          <EntitySet Name="classes_member" EntityType="Self.classes_member" />
+          <EntitySet Name="difficulty_level" EntityType="Self.difficulty_level" />
+          <EntitySet Name="difficulty_level_log" EntityType="Self.difficulty_level_log" />
+          <EntitySet Name="friendship" EntityType="Self.friendship" />
+          <EntitySet Name="guardianship" EntityType="Self.guardianship" />
+          <EntitySet Name="mall" EntityType="Self.mall" />
+          <EntitySet Name="mall_log" EntityType="Self.mall_log" />
+          <EntitySet Name="manager" EntityType="Self.manager" />
+          <EntitySet Name="message" EntityType="Self.message" />
+          <EntitySet Name="play_record" EntityType="Self.play_record" />
+          <EntitySet Name="play_record_answer" EntityType="Self.play_record_answer" />
+          <EntitySet Name="post" EntityType="Self.post" />
+          <EntitySet Name="post_violations" EntityType="Self.post_violations" />
+          <EntitySet Name="profile" EntityType="Self.profile" />
+          <EntitySet Name="profile_log" EntityType="Self.profile_log" />
+          <EntitySet Name="quiz_answer" EntityType="Self.quiz_answer" />
+          <EntitySet Name="quiz_group" EntityType="Self.quiz_group" />
+          <EntitySet Name="quiz_violations" EntityType="Self.quiz_violations" />
+          <EntitySet Name="quizzes" EntityType="Self.quizzes" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="role_log" EntityType="Self.role_log" />
+          <EntitySet Name="type" EntityType="Self.type" />
+          <EntitySet Name="use_record" EntityType="Self.use_record" />
+          <EntitySet Name="user_violations" EntityType="Self.user_violations" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__announcement__id__395884C4" Association="Self.FK__announcement__id__395884C4">
+            <End Role="announcement" EntitySet="announcement" />
+            <End Role="announcement_log" EntitySet="announcement_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__announcem__manag__31B762FC" Association="Self.FK__announcem__manag__31B762FC">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="announcement_log" EntitySet="announcement_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bag__account__123EB7A3" Association="Self.FK__bag__account__123EB7A3">
+            <End Role="users" EntitySet="users" />
+            <End Role="bag" EntitySet="bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bag__product_id__17F790F9" Association="Self.FK__bag__product_id__17F790F9">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="bag" EntitySet="bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buy_list__accoun__0D7A0286" Association="Self.FK__buy_list__accoun__0D7A0286">
+            <End Role="users" EntitySet="users" />
+            <End Role="buy_list" EntitySet="buy_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buy_list__produc__17036CC0" Association="Self.FK__buy_list__produc__17036CC0">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="buy_list" EntitySet="buy_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK__category___categ__2739D489" Association="Self.FK__category___categ__2739D489">
+            <End Role="category" EntitySet="category" />
+            <End Role="category_log" EntitySet="category_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_grou__categ__318258D2" Association="Self.FK__quiz_grou__categ__318258D2">
+            <End Role="category" EntitySet="category" />
+            <End Role="quiz_group" EntitySet="quiz_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__category___manag__2CF2ADDF" Association="Self.FK__category___manag__2CF2ADDF">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="category_log" EntitySet="category_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__classes__teacher__114A936A" Association="Self.FK__classes__teacher__114A936A">
+            <End Role="users" EntitySet="users" />
+            <End Role="classes" EntitySet="classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__classes_m__class__2BC97F7C" Association="Self.FK__classes_m__class__2BC97F7C">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="classes_member" EntitySet="classes_member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__classes_m__stude__10566F31" Association="Self.FK__classes_m__stude__10566F31">
+            <End Role="users" EntitySet="users" />
+            <End Role="classes_member" EntitySet="classes_member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__difficult__diffi__29221CFB" Association="Self.FK__difficult__diffi__29221CFB">
+            <End Role="difficulty_level" EntitySet="difficulty_level" />
+            <End Role="difficulty_level_log" EntitySet="difficulty_level_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quizzes__difficu__1BC821DD" Association="Self.FK__quizzes__difficu__1BC821DD">
+            <End Role="difficulty_level" EntitySet="difficulty_level" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__difficult__manag__2EDAF651" Association="Self.FK__difficult__manag__2EDAF651">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="difficulty_level_log" EntitySet="difficulty_level_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__friendshi__accou__0A9D95DB" Association="Self.FK__friendshi__accou__0A9D95DB">
+            <End Role="users" EntitySet="users" />
+            <End Role="friendship" EntitySet="friendship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__guardians__accou__0B91BA14" Association="Self.FK__guardians__accou__0B91BA14">
+            <End Role="users" EntitySet="users" />
+            <End Role="guardianship" EntitySet="guardianship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mall_log__produc__2645B050" Association="Self.FK__mall_log__produc__2645B050">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="mall_log" EntitySet="mall_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__produ__18EBB532" Association="Self.FK__use_recor__produ__18EBB532">
+            <End Role="mall" EntitySet="mall" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mall_log__manage__2BFE89A6" Association="Self.FK__mall_log__manage__2BFE89A6">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="mall_log" EntitySet="mall_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post_viol__manag__2B0A656D" Association="Self.FK__post_viol__manag__2B0A656D">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="post_violations" EntitySet="post_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__profile_l__manag__30C33EC3" Association="Self.FK__profile_l__manag__30C33EC3">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="profile_log" EntitySet="profile_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_viol__manag__2FCF1A8A" Association="Self.FK__quiz_viol__manag__2FCF1A8A">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="quiz_violations" EntitySet="quiz_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__role_log__manage__2DE6D218" Association="Self.FK__role_log__manage__2DE6D218">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="role_log" EntitySet="role_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_viol__manag__2A164134" Association="Self.FK__user_viol__manag__2A164134">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="user_violations" EntitySet="user_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__message__from_id__0C85DE4D" Association="Self.FK__message__from_id__0C85DE4D">
+            <End Role="users" EntitySet="users" />
+            <End Role="message" EntitySet="message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__message__to_id__151B244E" Association="Self.FK__message__to_id__151B244E">
+            <End Role="users" EntitySet="users" />
+            <End Role="message" EntitySet="message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__messa__160F4887" Association="Self.FK__use_recor__messa__160F4887">
+            <End Role="message" EntitySet="message" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__play_reco__accou__0F624AF8" Association="Self.FK__play_reco__accou__0F624AF8">
+            <End Role="users" EntitySet="users" />
+            <End Role="play_record" EntitySet="play_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__play_reco__quiz___1F98B2C1" Association="Self.FK__play_reco__quiz___1F98B2C1">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="play_record" EntitySet="play_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__play_record_answ__22751F6C" Association="Self.FK__play_record_answ__22751F6C">
+            <End Role="play_record" EntitySet="play_record" />
+            <End Role="play_record_answer" EntitySet="play_record_answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post__account__3A179ED3" Association="Self.FK__post__account__3A179ED3">
+            <End Role="users" EntitySet="users" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post__quiz_guid__1EA48E88" Association="Self.FK__post__quiz_guid__1EA48E88">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post_viol__post___367C1819" Association="Self.FK__post_viol__post___367C1819">
+            <End Role="post" EntitySet="post" />
+            <End Role="post_violations" EntitySet="post_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__post_viol__repor__3493CFA7" Association="Self.FK__post_viol__repor__3493CFA7">
+            <End Role="users" EntitySet="users" />
+            <End Role="post_violations" EntitySet="post_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__profile_l__profi__3864608B" Association="Self.FK__profile_l__profi__3864608B">
+            <End Role="profile" EntitySet="profile" />
+            <End Role="profile_log" EntitySet="profile_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__profile_i__32767D0B" Association="Self.FK__users__profile_i__32767D0B">
+            <End Role="profile" EntitySet="profile" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_answ__quiz___1DB06A4F" Association="Self.FK__quiz_answ__quiz___1DB06A4F">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="quiz_answer" EntitySet="quiz_answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_answ__type___25518C17" Association="Self.FK__quiz_answ__type___25518C17">
+            <End Role="type" EntitySet="type" />
+            <End Role="quiz_answer" EntitySet="quiz_answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_grou__accou__14270015" Association="Self.FK__quiz_grou__accou__14270015">
+            <End Role="users" EntitySet="users" />
+            <End Role="quiz_group" EntitySet="quiz_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quizzes__quiz_gr__236943A5" Association="Self.FK__quizzes__quiz_gr__236943A5">
+            <End Role="quiz_group" EntitySet="quiz_group" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_viol__quiz___37703C52" Association="Self.FK__quiz_viol__quiz___37703C52">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="quiz_violations" EntitySet="quiz_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quiz_viol__repor__3587F3E0" Association="Self.FK__quiz_viol__repor__3587F3E0">
+            <End Role="users" EntitySet="users" />
+            <End Role="quiz_violations" EntitySet="quiz_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__quizzes__type_id__245D67DE" Association="Self.FK__quizzes__type_id__245D67DE">
+            <End Role="type" EntitySet="type" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__quiz___208CD6FA" Association="Self.FK__use_recor__quiz___208CD6FA">
+            <End Role="quizzes" EntitySet="quizzes" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__role_log__role_i__282DF8C2" Association="Self.FK__role_log__role_i__282DF8C2">
+            <End Role="role" EntitySet="role" />
+            <End Role="role_log" EntitySet="role_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__role_id__1AD3FDA4" Association="Self.FK__users__role_id__1AD3FDA4">
+            <End Role="role" EntitySet="role" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__use_recor__accou__1332DBDC" Association="Self.FK__use_recor__accou__1332DBDC">
+            <End Role="users" EntitySet="users" />
+            <End Role="use_record" EntitySet="use_record" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_viol__repor__339FAB6E" Association="Self.FK__user_viol__repor__339FAB6E">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_violations" EntitySet="user_violations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_viol__repot__32AB8735" Association="Self.FK__user_viol__repot__32AB8735">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_violations" EntitySet="user_violations" />
+          </AssociationSet>
+          <AssociationSet Name="like_record" Association="Self.like_record">
+            <End Role="users" EntitySet="users" />
+            <End Role="quizzes" EntitySet="quizzes" />
+          </AssociationSet>
+          <EntitySet Name="setting_menu" EntityType="SeeNowModel.setting_menu" />
+          <EntitySet Name="frontend_menu" EntityType="SeeNowModel.frontend_menu" />
+        </EntityContainer>
+        <EntityType Name="setting_menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_name_tw" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="view" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="page" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="order_num" Type="Int32" />
+        </EntityType>
+        <EntityType Name="frontend_menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_name_tw" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="controller" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="action" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="point" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="is_parent" Type="Boolean" Nullable="false" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="order_num" Type="Int32" />
+          <Property Name="teacher_auth" Type="Boolean" Nullable="false" />
+          <Property Name="student_auth" Type="Boolean" Nullable="false" />
+          <Property Name="parent_auth" Type="Boolean" Nullable="false" />
+          <Property Name="guest_auth" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SeeNowModelStoreContainer" CdmEntityContainer="SeeNowEntities">
+          <EntitySetMapping Name="admin">
+            <EntityTypeMapping TypeName="SeeNowModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="announcement">
+            <EntityTypeMapping TypeName="SeeNowModel.announcement">
+              <MappingFragment StoreEntitySet="announcement">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="publish_time" ColumnName="publish_time" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="announcement_log">
+            <EntityTypeMapping TypeName="SeeNowModel.announcement_log">
+              <MappingFragment StoreEntitySet="announcement_log">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="publish_time" ColumnName="publish_time" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bag">
+            <EntityTypeMapping TypeName="SeeNowModel.bag">
+              <MappingFragment StoreEntitySet="bag">
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="remaining_quantity" ColumnName="remaining_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buy_list">
+            <EntityTypeMapping TypeName="SeeNowModel.buy_list">
+              <MappingFragment StoreEntitySet="buy_list">
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quid" ColumnName="quid" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="SeeNowModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_desc" ColumnName="category_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category_log">
+            <EntityTypeMapping TypeName="SeeNowModel.category_log">
+              <MappingFragment StoreEntitySet="category_log">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_desc" ColumnName="category_desc" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classes">
+            <EntityTypeMapping TypeName="SeeNowModel.classes">
+              <MappingFragment StoreEntitySet="classes">
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="class_code" ColumnName="class_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classes_member">
+            <EntityTypeMapping TypeName="SeeNowModel.classes_member">
+              <MappingFragment StoreEntitySet="classes_member">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="difficulty_level">
+            <EntityTypeMapping TypeName="SeeNowModel.difficulty_level">
+              <MappingFragment StoreEntitySet="difficulty_level">
+                <ScalarProperty Name="difficulty_id" ColumnName="difficulty_id" />
+                <ScalarProperty Name="difficulty_desc" ColumnName="difficulty_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="difficulty_level_log">
+            <EntityTypeMapping TypeName="SeeNowModel.difficulty_level_log">
+              <MappingFragment StoreEntitySet="difficulty_level_log">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="difficulty_id" ColumnName="difficulty_id" />
+                <ScalarProperty Name="difficulty_desc" ColumnName="difficulty_desc" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="friendship">
+            <EntityTypeMapping TypeName="SeeNowModel.friendship">
+              <MappingFragment StoreEntitySet="friendship">
+                <ScalarProperty Name="friend_id" ColumnName="friend_id" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="guardianship">
+            <EntityTypeMapping TypeName="SeeNowModel.guardianship">
+              <MappingFragment StoreEntitySet="guardianship">
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="account" ColumnName="account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mall">
+            <EntityTypeMapping TypeName="SeeNowModel.mall">
+              <MappingFragment StoreEntitySet="mall">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="img_path" ColumnName="img_path" />
+                <ScalarProperty Name="used_img_path" ColumnName="used_img_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mall_log">
+            <EntityTypeMapping TypeName="SeeNowModel.mall_log">
+              <MappingFragment StoreEntitySet="mall_log">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="img_path" ColumnName="img_path" />
+                <ScalarProperty Name="used_img_path" ColumnName="used_img_path" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manager">
+            <EntityTypeMapping TypeName="SeeNowModel.manager">
+              <MappingFragment StoreEntitySet="manager">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="message">
+            <EntityTypeMapping TypeName="SeeNowModel.message">
+              <MappingFragment StoreEntitySet="message">
+                <ScalarProperty Name="message_guid" ColumnName="message_guid" />
+                <ScalarProperty Name="from_id" ColumnName="from_id" />
+                <ScalarProperty Name="to_id" ColumnName="to_id" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="read_flag" ColumnName="read_flag" />
+                <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="play_record">
+            <EntityTypeMapping TypeName="SeeNowModel.play_record">
+              <MappingFragment StoreEntitySet="play_record">
+                <ScalarProperty Name="play_guid" ColumnName="play_guid" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+                <ScalarProperty Name="round_no" ColumnName="round_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="play_record_answer">
+            <EntityTypeMapping TypeName="SeeNowModel.play_record_answer">
+              <MappingFragment StoreEntitySet="play_record_answer">
+                <ScalarProperty Name="play_guid" ColumnName="play_guid" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="select_answer" ColumnName="select_answer" />
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="post">
+            <EntityTypeMapping TypeName="SeeNowModel.post">
+              <MappingFragment StoreEntitySet="post">
+                <ScalarProperty Name="post_quid" ColumnName="post_quid" />
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="lock_flag" ColumnName="lock_flag" />
+                <ScalarProperty Name="account" ColumnName="account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="post_violations">
+            <EntityTypeMapping TypeName="SeeNowModel.post_violations">
+              <MappingFragment StoreEntitySet="post_violations">
+                <ScalarProperty Name="violation_quid" ColumnName="violation_quid" />
+                <ScalarProperty Name="reporter_id" ColumnName="reporter_id" />
+                <ScalarProperty Name="post_quid" ColumnName="post_quid" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="check_flag" ColumnName="check_flag" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="violation_reason" ColumnName="violation_reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profile">
+            <EntityTypeMapping TypeName="SeeNowModel.profile">
+              <MappingFragment StoreEntitySet="profile">
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+                <ScalarProperty Name="profile_name" ColumnName="profile_name" />
+                <ScalarProperty Name="profile_path" ColumnName="profile_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profile_log">
+            <EntityTypeMapping TypeName="SeeNowModel.profile_log">
+              <MappingFragment StoreEntitySet="profile_log">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+                <ScalarProperty Name="profile_name" ColumnName="profile_name" />
+                <ScalarProperty Name="profile_path" ColumnName="profile_path" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quiz_answer">
+            <EntityTypeMapping TypeName="SeeNowModel.quiz_answer">
+              <MappingFragment StoreEntitySet="quiz_answer">
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+                <ScalarProperty Name="answer_id" ColumnName="answer_id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="answer_text" ColumnName="answer_text" />
+                <ScalarProperty Name="answer_img_path" ColumnName="answer_img_path" />
+                <ScalarProperty Name="is_correct" ColumnName="is_correct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quiz_group">
+            <EntityTypeMapping TypeName="SeeNowModel.quiz_group">
+              <MappingFragment StoreEntitySet="quiz_group">
+                <ScalarProperty Name="quiz_group1" ColumnName="quiz_group" />
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quiz_violations">
+            <EntityTypeMapping TypeName="SeeNowModel.quiz_violations">
+              <MappingFragment StoreEntitySet="quiz_violations">
+                <ScalarProperty Name="violation_quid" ColumnName="violation_quid" />
+                <ScalarProperty Name="reporter_id" ColumnName="reporter_id" />
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="check_flag" ColumnName="check_flag" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="violation_reason" ColumnName="violation_reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quizzes">
+            <EntityTypeMapping TypeName="SeeNowModel.quizzes">
+              <MappingFragment StoreEntitySet="quizzes">
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="tittle_text" ColumnName="tittle_text" />
+                <ScalarProperty Name="title_img_path" ColumnName="title_img_path" />
+                <ScalarProperty Name="title_video_path" ColumnName="title_video_path" />
+                <ScalarProperty Name="difficulty_id" ColumnName="difficulty_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="energy" ColumnName="energy" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="like_num" ColumnName="like_num" />
+                <ScalarProperty Name="quiz_group" ColumnName="quiz_group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="SeeNowModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role_desc" ColumnName="role_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_log">
+            <EntityTypeMapping TypeName="SeeNowModel.role_log">
+              <MappingFragment StoreEntitySet="role_log">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role_desc" ColumnName="role_desc" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type">
+            <EntityTypeMapping TypeName="SeeNowModel.type">
+              <MappingFragment StoreEntitySet="type">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="type_desc" ColumnName="type_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="use_record">
+            <EntityTypeMapping TypeName="SeeNowModel.use_record">
+              <MappingFragment StoreEntitySet="use_record">
+                <ScalarProperty Name="use_guid" ColumnName="use_guid" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="used_quantity" ColumnName="used_quantity" />
+                <ScalarProperty Name="message_guid" ColumnName="message_guid" />
+                <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_violations">
+            <EntityTypeMapping TypeName="SeeNowModel.user_violations">
+              <MappingFragment StoreEntitySet="user_violations">
+                <ScalarProperty Name="violation_quid" ColumnName="violation_quid" />
+                <ScalarProperty Name="repoter_id" ColumnName="repoter_id" />
+                <ScalarProperty Name="report_id" ColumnName="report_id" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="check_flag" ColumnName="check_flag" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="violation_reason" ColumnName="violation_reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="SeeNowModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nick_name" ColumnName="nick_name" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="energy" ColumnName="energy" />
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+                <ScalarProperty Name="bag_number" ColumnName="bag_number" />
+                <ScalarProperty Name="lock_flag" ColumnName="lock_flag" />
+                <ScalarProperty Name="validation_flag" ColumnName="validation_flag" />
+                <ScalarProperty Name="resetable" ColumnName="resetable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="like_record" TypeName="SeeNowModel.like_record" StoreEntitySet="like_record">
+            <EndProperty Name="users">
+              <ScalarProperty Name="account" ColumnName="account" />
+            </EndProperty>
+            <EndProperty Name="quizzes">
+              <ScalarProperty Name="quiz_guid" ColumnName="quiz_guid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="setting_menu">
+            <EntityTypeMapping TypeName="SeeNowModel.setting_menu">
+              <MappingFragment StoreEntitySet="setting_menu">
+                <ScalarProperty Name="order_num" ColumnName="order_num" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="page" ColumnName="page" />
+                <ScalarProperty Name="view" ColumnName="view" />
+                <ScalarProperty Name="menu_name_tw" ColumnName="menu_name_tw" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="frontend_menu">
+            <EntityTypeMapping TypeName="SeeNowModel.frontend_menu">
+              <MappingFragment StoreEntitySet="frontend_menu">
+                <ScalarProperty Name="guest_auth" ColumnName="guest_auth" />
+                <ScalarProperty Name="parent_auth" ColumnName="parent_auth" />
+                <ScalarProperty Name="student_auth" ColumnName="student_auth" />
+                <ScalarProperty Name="teacher_auth" ColumnName="teacher_auth" />
+                <ScalarProperty Name="order_num" ColumnName="order_num" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="is_parent" ColumnName="is_parent" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="menu_name_tw" ColumnName="menu_name_tw" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

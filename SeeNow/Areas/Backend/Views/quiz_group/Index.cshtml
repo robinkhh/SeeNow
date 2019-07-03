@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SeeNow.Models.quiz_group>
+
+@{
+    ViewBag.Title = "後台管理--遊戲題組";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>後台管理--遊戲題組</h2>
+
+<header class="masthead form ">
+    <div class="container">
+        <div class="col-md-12 ">
+
+
+            <h5>
+                @Html.ActionLink("新增遊戲題組", "QGAdd", "QQA")
+                @*@Html.ActionLink("新增遊戲題組", "Create")*@
+            </h5>
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.quiz_group1)
+                        @*題組編號*@
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.group_name)
+                        @*題組名稱*@
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.category.category_desc)
+                        @*類別描述*@
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.users.account)
+                        @*用戶*@
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quiz_group1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.group_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category.category_desc)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.users.role_id)*@
+                            @Html.DisplayFor(modelItem => item.users.account)
+                        </td>
+                        <td>
+                            @Html.ActionLink("編輯", "Edit", new { id = item.quiz_group1 }) @*|*@
+                            @*@Html.ActionLink("Details", "Details", new { id = item.quiz_group1 }) |*@
+                            @*@Html.ActionLink("刪除", "Delete", new { id = item.quiz_group1 })*@
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</header>

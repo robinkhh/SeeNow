@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SeeNow.Models.user_violations>
+
+@{
+    ViewBag.Title = "後台管理--會員檢舉清單";
+}
+
+<h2>後台管理--會員檢舉清單</h2>
+
+<p>
+    @Html.ActionLink("新增會員檢舉", "Create")
+</p>
+<table class="table table-striped table-info table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.violation_quid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.check_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.violation_reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.manager.manager_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users1.account)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.violation_quid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.check_flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.violation_reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.manager.manager_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users1.account)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.violation_quid }) @*|*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.violation_quid }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.violation_quid })*@
+        </td>
+    </tr>
+}
+
+</table>

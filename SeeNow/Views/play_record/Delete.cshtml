@@ -1,0 +1,64 @@
+﻿@model SeeNow.Models.play_record
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>play_record</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.role_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.role_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quizzes.type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quizzes.type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.play_record_answer.account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.play_record_answer.account)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "PlayerStart";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+    var nameBtn = ViewBag.NameBtn;
+    var account = Session["user_id"];//var account = Session["account"];
+    var nickName = Session["user_name"];//var account = Session["nickname"];
+}
+@using (Html.BeginForm())
+{
+<header class="masthead form ">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 id="quizDiv"><strong>quizDiv</strong></h1>
+            @*<div class="quesion-txt" id="quizDiv">quizDiv</div>*@
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-around">
+                @*site .quiztext自定 button size*@
+
+                <input id="redBtn" name="1" class="btn btn-danger btn-round quiztext " value="A" onclick="choicBtn(this)" type="button">
+                <input id="blueBtn" name="2" class="btn btn-primary btn-round quiztext   " value="B" onclick="choicBtn(this)" type="button">
+            </div>
+            <div class="col-md-6 d-flex justify-content-around">
+                <input id="greenBtn" name="3" class="btn btn-success btn-round quiztext " value="C" onclick="choicBtn(this)" type="button">
+                <input id="yellowBtn" name="4" class="btn btn-warning btn-round quiztext " value="D" onclick="choicBtn(this)" type="button">
+            </div>
+
+            <div id="countPogress" class="row col-12 progress" style="height:30px">
+                <div class="progress-bar bg-danger progress-bar-striped " style="width:1px;height:30px"></div>
+            </div>
+            <div class="row col-12">
+                <div id="countTime">11</div>
+            </div>
+
+            <div class="row col-12 ">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-white" id="">訊息</span>
+                    </div>
+                    <textarea id="message" class="form-control bg-transparent text-white"></textarea>
+                </div>
+                <div class="input-group">
+                    <input id="msg" class="form-control bg-transparent w-100" type="text" placeholder="輸人訊息!" value="">
+                    <div class="input-group-append">
+                        <input type="Button" class="form-control  btn-info " id="sendGroupBtn" value="送出">
+                        @*<span class="input-group-addon" style="font-size:30px;color:indigo;"><i class="fa fa-edit"></i></span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 ">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent text-white" id="">PIN</span>
+                    </div>
+                    <input id="group" class="form-control bg-transparent disabled" type="text" value="">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent text-white" id="">帳號</span>
+                    </div>
+                    @*<a id="name" class="form-control bg-transparent">@account</a>*@
+                    <input id="name" class="form-control bg-transparent" type="text" value="@account">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent text-white" id="">暱稱</span>
+                    </div>
+                    @*<a id="nickname" class="form-control bg-transparent">@nickName</a>*@
+                    <input id="nickname" class="form-control bg-transparent" type="text" value="@nickName">
+                    <input type="Button" id="addGroupBtn" class="form-control btn-info " value="加入群組">
+                </div>
+                <div class="offset-1">
+                    <label for="showScore">離開</label>
+                    <input type="Button" id="showScore" class="form-control btn-warning" value="Exit">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <audio id="audio">
+        <source src="~/assets/music/ajourneyawaits.mp3" type="audio/mpeg" />
+    </audio>
+
+    @section scripts {
+        <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/seenow.js"></script>
+    }
+}

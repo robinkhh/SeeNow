@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SeeNow.Models.role>
+
+@{
+    ViewBag.Title = "後台管理--身分";
+
+}
+@Styles.Render("~/back/css")
+<h2>後台管理--身分</h2>
+
+<p>
+    @Html.ActionLink("新增身分", "Create")
+</p>
+<table class="table table-striped table-danger table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.role_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role_desc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_desc)
+            </td>
+            <td>
+                @Html.ActionLink("編輯身分", "Edit", new { id = item.role_id }) @*|*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.role_id }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.role_id })*@
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SeeNow.Models.announcement>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+<header class="masthead form">
+    <div class="container">
+        @Html.Action("_AnnouncementIndex", "announcements", new { number = 0 })
+        <p >
+            @Html.ActionLink("返回首頁", "Index", "Home")
+        </p>
+    </div>
+    
+</header>
+
+@*<header class="masthead form">
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.publish_time)
+                </th>
+
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.publish_time)
+                    </td>
+
+
+                </tr>
+            }
+
+        </table>
+
+        <p>
+            @Html.ActionLink("返回首頁", "Index", "Home")
+        </p>
+
+    </div>
+
+</header>*@

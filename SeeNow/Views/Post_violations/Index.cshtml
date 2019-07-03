@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SeeNow.Models.post_violations>
+
+@{
+    ViewBag.Title = "後台管理--貼文檢舉";
+}
+
+<h2>後台管理--貼文檢舉</h2>
+
+<p>
+    @Html.ActionLink("新增貼文檢舉", "Create")
+</p>
+<table class="table table-striped table-primary table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.post_quid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.check_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.violation_reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.manager.manager_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.post.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.account)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.post_quid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.check_flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.violation_reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.manager.manager_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.post.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.account)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.violation_quid }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.violation_quid }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.violation_quid })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,196 @@
+﻿@*@model IEnumerable<SeeNow.Models.quizzes>*@
+@{
+    ViewBag.Title = "QuizzesIndex";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+    //var Pin = @Context.Session.GetString("_Pin");
+    var qzans = Json.Decode(ViewBag.qzans);
+    int rowid = 1;//0是標題,所以題目從1開始
+    var round_no = ViewBag.round_no;//回合 
+    var pinGroup = Session["round_no"];//當PIN用
+    var account = Session["user_id"];//var account = Session["account"];
+    var nickName = Session["user_name"];//var nickName = Session["nick_name"];
+
+}
+@*<div style="background-image: url('../assets/image/runball.gif')">*@
+<header class="masthead form ">
+    <div class="jumbotron">
+        <div class="container">
+            <h1 id="quizDiv"><strong>quizDiv</strong></h1>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-12">
+            <h1 id="countTime"></h1>
+            <div class="row ">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary" id="">訊息</span>
+                    </div>
+                    <textarea id="message" class="form-control bg-transparent"></textarea>
+                </div>
+                <div class="row col-12">
+
+                    <div class="input-group">
+                        <input id="msg" class="form-control bg-transparent w-100" type="text" placeholder="輸人訊息!" value="">
+                        <div class="input-group-append">
+                            <input type="Button" class="form-control  btn-info " id="sendGroupBtn" value="送出">
+                            @*<span class="input-group-addon" style="font-size:30px;color:indigo;"><i class="fa fa-edit"></i></span>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent text-primary" id="">PIN</span>
+                        </div>
+                        <input id="group" class="form-control bg-transparent disabled" type="text" value="@pinGroup">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent text-primary" id="">帳號</span>
+                        </div>
+                        <input id="name" class="form-control bg-transparent" type="text" value="@account">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent text-primary" id="">暱稱</span>
+                        </div>
+                        <input id="nickname" class="form-control bg-transparent" type="text" value="@nickName">
+                        <input type="Button" id="addGroupBtn" class="form-control btn-primary text-danger" value="建立群組">
+                    </div>
+
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent text-primary" id="">自動出題</span>
+                        </div>
+                        <input type="Button" class="form-control  btn-primary" id="autoBtn" value="auto" onclick="playQuiz(1,-1,@(round_no))">
+
+                        @Html.ActionLink("回題組選單", "HostStart", "Game", new { @class = "form-control btn btn-success" })
+                        <input type="Button" id="endRoundBtn" class="form-control btn-danger" value="回合結束" onclick="endRound()">
+                    </div>
+                    <audio id="audio">
+                        <source src="~/assets/music/ajourneyawaits.mp3" type="audio/mpeg" />
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*題組列表*@
+    @* @ViewBag.qzans*@
+
+    @*@foreach (var qz in qzans)
+        {
+            <p>@qz.title</p>
+            <p>@qz.ans1</p>
+            <p>@qz.ans2</p>
+            <p>@qz.ans3</p>
+            <p>@qz.ans4</p>
+        }*@
+    <div class="container">
+        <table class="table" id="Tbquiz">
+            <tr>
+                <th>
+                    編號
+                </th>
+                <th>
+                    題目
+                </th>
+                <th class="hideANDseek">
+                    時間
+                </th>
+                <th class="hideANDseek">
+                    答案A
+                </th>
+                <th class="hideANDseek">
+                    correct
+                </th>
+                <th class="hideANDseek">
+                    答案B
+                </th>
+                <th class="hideANDseek">
+                    correct
+                </th>
+                <th class="hideANDseek">
+                    答案C
+                </th>
+                <th class="hideANDseek">
+                    correct
+                </th>
+                <th class="hideANDseek">
+                    答案D
+                </th>
+                <th class="hideANDseek">
+                    correct
+                </th>
+                <th>
+                    score
+                </th>
+
+            </tr>
+
+            @foreach (var qz in qzans)
+            {
+            <tr>
+                <td>
+                    @qz.quiz_guid
+                </td>
+                <td>
+                    @qz.title
+                </td>
+                <td class="hideANDseek">
+                    @qz.time
+                </td>
+                <td class="hideANDseek">
+                    @qz.ans1
+                </td>
+                <td class="hideANDseek">
+                    @qz.is_correct1
+                </td>
+                <td class="hideANDseek">
+                    @qz.ans2
+                </td>
+                <td class="hideANDseek">
+                    @qz.is_correct2
+                </td>
+                <td class="hideANDseek">
+                    @qz.ans3
+                </td>
+                <td class="hideANDseek">
+                    @qz.is_correct3
+                </td>
+                <td class="hideANDseek">
+                    @qz.ans4
+                </td>
+                <td class="hideANDseek">
+                    @qz.is_correct4
+                </td>
+                <td>
+                    @qz.score
+                </td>
+                <td>
+                    @qz.img
+                </td>
+                <td>
+                    @*每列row做一Button帶參數rowid,rowid,round_no+=1*@
+                    <div class="form-group">
+                        <button type="Button" id="menuBtn@(rowid)" onclick="playQuiz(@(rowid),@(rowid),@(++round_no))" class="form-control btn-success">@(rowid)</button>
+                        @*下一列rowid加1*@
+                        @*@(rowid++)*@
+                        @{
+                            rowid++;
+                        }
+                    </div>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+
+</header>
+    @*</div>*@
+    @section scripts {
+        <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/seenow.js"></script>
+
+
+    }

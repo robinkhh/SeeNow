@@ -1,0 +1,141 @@
+﻿@model SeeNow.Models.users
+
+@{
+    ViewBag.Title = "編輯";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*@Html.AntiForgeryToken()*@
+<header class="masthead">
+
+    <div class="container ">
+        <div class="row justify-content-center" id="login">
+            <aside class="col-sm-4">
+                <div class="card">
+                    <article class="card-body">
+                        <div class="form-group">
+
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  @Html.DisplayNameFor(model => model.account) </span>
+                                </div>
+                                <input name="account" class="form-control" type="text" value="@Session["user_id"]" readonly>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  @Html.DisplayNameFor(model => model.password) </span>
+                                </div>
+                                @Html.EditorFor(model => model.password, "", new { @class = "form-control" })
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  @Html.DisplayNameFor(model => model.nick_name) </span>
+                                </div>
+                                @Html.EditorFor(model => model.nick_name, "", new { @class = "form-control" })
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  @Html.DisplayNameFor(model => model.e_mail) </span>
+                                </div>
+                                @Html.EditorFor(model => model.e_mail, "", new { @class = "form-control" })
+                            </div>
+
+                            <div class="input-group">
+                                @Html.LabelFor(model => model.role_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="input-group-prepend">
+                                    @Html.DropDownList("role_id", null, htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.role_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-block"> 儲存  </button>
+                            </div>
+                        </div>
+                    </article>
+                </div> <!-- card.// -->
+            </aside>
+        </div>
+    </div>
+    @*<table class="table ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nick_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.e_mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.energy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bag_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lock_flag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.validation_flag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.resetable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.profile.profile_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role.role_desc)
+            </th>
+            @*<th></th>*@
+
+
+    @*<tr>
+            <td>
+                @Html.DisplayFor(model => model.password)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.nick_name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.e_mail)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.score)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.energy)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.bag_number)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.lock_flag)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.validation_flag)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.resetable)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.profile.profile_name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.role.role_desc)
+            </td>
+
+        </tr>*@
+
+
+
+</header>

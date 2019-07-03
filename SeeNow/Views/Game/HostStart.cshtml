@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SeeNow.Models.quiz_group>
+@{
+    /**/
+
+    ViewBag.Title = "HostStart";
+    //var Pin = @Context.Session.GetString("_Pin");
+}
+<header class="masthead form ">
+    <div class="container ">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.group_name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.group_name)
+                        </td>
+                        <td>
+                            <a href='@Url.Action("QuizzesIndex", "Game", new { id = item.quiz_group1 })'>題目</a>
+
+
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</header>

@@ -1,0 +1,200 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Main CSS-->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/main.css">*@
+    <!-- Font-icon css-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+ 
+</head>
+<body class="layui-layout-body ">
+
+    <div class="layui-layout layui-layout-admin">
+
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <div class="layui-header layui-bg-cyan">
+
+            <div class="layui-logo layui-bg-cyan">SeeNow管理平臺</div>
+
+            <ul class="layui-nav layui-layout-right ">
+                <li class="layui-nav-item">
+                    <img src="https://lh3.googleusercontent.com/a-/AAuE7mCR0nAB8S37KG52Mz4K-jEub1Xuk0EfGLd9jhIypw=s28-c-k-no" class="layui-nav-img">
+                    歡迎光臨，[manager]
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">邮件管理</a></dd>
+                        <dd><a href="javascript:;">消息管理</a></dd>
+                        <dd><a href="javascript:;">授权管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">基本資料</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改個人資料</a></dd>
+                        <dd><a href="javascript:;">變更密碼</a></dd>
+                        <dd><a href="javascript:;">變更郵箱</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">登出</a></li>
+
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-cyan">
+
+
+            <div class="layui-side-scroll">
+
+                <!-- 左側垂直導航區域-->
+
+                <ul class="layui-nav layui-nav-tree layui-bg-cyan" lay-filter="test">
+                    <li class="layui-nav-item">
+
+                        <a href="javascript:;"><i class="fa fa-laptop"></i>    管理員設定</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-id="1" data-title="最高級管理員" data-url=@Url.Action("index","admins")
+                                   class="site-SeeNow-active" data-type="tabAdd">最高級管理員</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="2" data-title="管理員" data-url=@Url.Action("index","managers")
+                                   class="site-SeeNow-active" data-type="tabAdd">管理員</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="far fa-keyboard"></i>   基本參數設定</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-id="3" data-title="題庫類別" data-url=@Url.Action("index","categories")
+                                   class="site-SeeNow-active" data-type="tabAdd">題庫類別</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="4" data-title="難易程度" data-url=@Url.Action("index","difficulty_level")
+                                   class="site-SeeNow-active" data-type="tabAdd">難易程度</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="5" data-title="身分別" data-url=@Url.Action("index","roles")
+                                   class="site-SeeNow-active" data-type="tabAdd">身分別</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fas fa-cog"></i>   網站管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-id="6" data-title="公告" data-url=@Url.Action("index","announcements")
+                                   class="site-SeeNow-active" data-type="tabAdd">公告</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fas fa-cog"></i>   會員管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-id="7" data-title="會員清單" data-url=@Url.Action("index","users")
+                                   class="site-SeeNow-active" data-type="tabAdd">會員清單</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!--tab標籤-->
+        
+        <div class="layui-body" id="container">
+        
+            <div class="layui-tab layui-tab-card" lay-filter="SeeNow" lay-allowclose="true">
+                <ul class="layui-tab-title"></ul>
+                <div class="layui-tab-content">@RenderBody()</div>
+                
+            </div>
+        </div>
+            <!-- 底部固定區域 -->
+            <div class="layui-footer" style="text-align:center;">
+                © SeeNow管理平臺
+            </div>
+        </div>
+        <!-- Essential javascripts for application to work-->
+        @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+        @*<script src="~/Scripts/main.js"></script>*@
+        <!-- The javascript plugin to display page loading on top-->
+        @*<script src="~/Scripts/pace.min.js"></script>*@
+
+        <script src="~/Scripts/layui/layui.js"></script>
+        <script>
+
+            layui.use(['element', 'layer', 'jquery'], function () {
+                var element = layui.element;
+                // var layer = layui.layer;
+                var $ = layui.$;
+                // 配置tab實踐在下面無法獲取到選單元素
+                $('.site-SeeNow-active').on('click', function () {
+                    var dataid = $(this);
+                    //這時會判斷右側.layui-tab-title屬性下的有lay-id屬性的li的數目，即已經開啟的tab項數目
+                    if ($(".layui-tab-title li[lay-id]").length <= 0) {
+                        //如果比零小，則直接開啟新的tab項
+                        active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr("data-title"));
+                    } else {
+                        //否則判斷該tab項是否以及存在
+                        var isData = false; //初始化一個標誌，為false說明未開啟該tab項 為true則說明已有
+                        $.each($(".layui-tab-title li[lay-id]"), function () {
+                            //如果點選左側選單欄所傳入的id 在右側tab項中的lay-id屬性可以找到，則說明該tab項已經開啟
+                            if ($(this).attr("lay-id") == dataid.attr("data-id")) {
+                                isData = true;
+                            }
+                        })
+                        if (isData == false) {
+                            //標誌為false 新增一個tab項
+                            active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr("data-title"));
+                        }
+                    }
+                    //最後不管是否新增tab，最後都轉到要開啟的選項頁面上
+                    active.tabChange(dataid.attr("data-id"));
+                });
+                var active = {
+                    //在這裡給active繫結幾項事件，後面可通過active呼叫這些事件
+                    tabAdd: function (url, id, name) {
+                        //新增一個Tab項 傳入三個引數，分別對應其標題，tab頁面的地址，還有一個規定的id，是標籤中data-id的屬性值
+                        //關於tabAdd的方法所傳入的引數可看layui的開發文件中基礎方法部分
+                        element.tabAdd('SeeNow', {
+                            title: name,
+
+                            content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="' + url + '" style="width:100%;height:99%;"></iframe>',
+                            id: id //規定好的id
+                        })
+                        FrameWH();  //計算ifram層的大小
+                    },
+                    tabChange: function (id) {
+                        //切換到指定Tab項
+                        element.tabChange('SeeNow', id); //根據傳入的id傳入到指定的tab項
+                    },
+                    tabDelete: function (id) {
+                        element.tabDelete("SeeNow", id);//刪除
+                    }
+                };
+                function FrameWH() {
+                    var h = $(window).height();
+                    $("iframe").css("height", h + "px");
+                }
+            });
+        </script>
+
+</body>
+</html>

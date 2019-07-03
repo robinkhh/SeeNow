@@ -1,0 +1,107 @@
+﻿@model SeeNow.Models.users
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nick_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nick_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.e_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.e_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.energy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.energy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bag_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bag_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lock_flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lock_flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.validation_flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.validation_flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.resetable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resetable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.profile.profile_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.profile.profile_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role.role_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role.role_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.account }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

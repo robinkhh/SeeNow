@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SeeNow.Models.quizzes>
+
+@{
+    ViewBag.Title = "後台管理--遊戲題目";
+}
+
+<h2>後台管理--遊戲題目</h2>
+
+<p>
+    @Html.ActionLink("新增遊戲題目", "Create")
+</p>
+<table class="table table-striped table-secondary table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.quiz_guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tittle_text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title_img_path)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title_video_path)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score)
+        </th>
+        <th>            
+            @Html.DisplayNameFor(model => model.energy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.visible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.like_num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.difficulty_level.difficulty_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quiz_group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quiz_group1.group_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type.type_desc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.quiz_guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tittle_text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title_img_path)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title_video_path)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.energy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.visible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.like_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.difficulty_level.difficulty_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quiz_group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quiz_group1.group_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type.type_desc)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.quiz_guid }) |
+            @*@Html.ActionLink("Details", "Details", new { id = item.quiz_guid }) |*@
+            @Html.ActionLink("刪除", "Delete", new { id = item.quiz_guid })
+        </td>
+    </tr>
+}
+
+</table>

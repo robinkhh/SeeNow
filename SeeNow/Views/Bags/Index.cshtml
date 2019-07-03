@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SeeNow.Models.bag>
+
+@{
+    ViewBag.Title = "背包";
+}
+
+<h2>背包</h2>
+
+<p>
+    @*@Html.ActionLink("新增背包", "Create")*@
+</p>
+<table class="table table-striped table-success table-hover">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.users.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mall.product_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remaining_quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.users.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mall.product_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remaining_quantity)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

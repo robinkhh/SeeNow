@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SeeNow.Models.play_record>
+@{
+
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+    ViewBag.Title = "ScoreView";
+    var account = "c50101";//var account = Session["account"];
+    var nickName = "過關";//var account = Session["nickname"];
+    var pin = ViewBag.Round;
+    var strRound = ViewBag.strRound;
+   var userSort = ViewBag.userSort;
+
+}
+
+<h2>ScoreView</h2>
+@*pin=@pin*@
+@*strRound=@strRound*@
+@*@ViewBag.userSort*@
+
+<table class="table table-striped table-warning table-hover">
+    <tr>
+        <th>
+            圖像
+        </th>
+        <th>
+            帳號
+        </th>
+        <th>
+            分數
+        </th>
+    </tr>
+
+    @foreach (var u in userSort)
+    {
+        <tr>
+            <td>
+                <img src="~/Image/@u.GetType().GetProperty("pf").GetValue(u)"  style="width:80px;height:80px" />
+            </td>
+            <td>
+                @u.GetType().GetProperty("acc").GetValue(u)
+            </td>
+            <td>
+                @u.GetType().GetProperty("sco").GetValue(u)
+               
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <div class="row col-12 ">
+        <div class="input-group">
+            <div class="input-group-append">
+                <span class="input-group-text bg-transparent text-primary" id="">訊息</span>
+            </div>
+            <textarea id="message" class="form-control bg-transparent"></textarea>
+        </div>
+        <div class="input-group">
+            <input id="msg" class="form-control bg-transparent w-100" type="text" placeholder="輸人訊息!" value="">
+            <div class="input-group-append">
+                <input type="Button" class="form-control  btn-info " id="sendGroupBtn" value="送出">
+
+            </div>
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-transparent text-primary" id="">PIN</span>
+            </div>
+            <input id="group" class="form-control bg-transparent disabled" type="text" value="@pin">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-transparent text-primary" id="">帳號</span>
+            </div>
+            <input id="name" class="form-control bg-transparent" type="text" value="@account">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-transparent text-primary" id="">暱稱</span>
+            </div>
+            <input id="nickname" class="form-control bg-transparent" type="text" value="@nickName">
+            <input type="Button" id="addGroupBtn" class="form-control btn-primary text-danger" value="建立群組">
+        </div>
+        <div class="offset-1">
+            <label for="showScore">離開</label>
+            <input type="Button" id="showScore" class="form-control btn-warning" value="Exit">
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/seeScore.js"></script>
+}

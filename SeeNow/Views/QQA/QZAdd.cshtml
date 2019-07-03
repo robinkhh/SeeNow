@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SeeNow.Models.quizzes>
+
+@{
+    ViewBag.Title = "新增遊戲題目";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="masthead form ">
+
+    <div class="col-8 align-content-center offset-2">
+        <h2>新增遊戲題目</h2>
+    </div>
+
+    <form method="post" action="@Url.Action("QZAdd")">
+        @Html.AntiForgeryToken()
+
+        <div class="container align-content-center">
+
+            @*<h5>
+            @Html.ActionLink("返回遊戲題目列表", "QZIndex", "QQA")
+        </h5>*@
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="group_name">遊戲題組名稱</label>
+                    <div class="col-md-10">
+                        @*@Html.DropDownList("group_name", null, htmlAttributes: new { @class = "form-control" })*@
+                        @Html.DropDownList("group_name" ,null , htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="tittle_text">文字題目</label>
+                    <div class="col-md-10">
+                        <input id="tittle_text" name="tittle_text" type="text" class="form-control" />
+                        <span class="text-danger">@ViewBag.Message</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="time">答題時間(秒)</label>
+                    <div class="col-md-10">
+                        <input id="time" name="time" type="text" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="score">可獲得積分</label>
+                    <div class="col-md-10">
+                        <input id="score" name="score" type="text" class="form-control" value="5" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="energy">需花費精力值</label>
+                    <div class="col-md-10">
+                        <input id="energy" name="energy" type="text" class="form-control" value="5" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="visible">是否可見</label>
+                    <div class="col-md-10">
+                        <input id="visible" name="visible" type="text" class="form-control" value="True" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="difficulty_desc">難易度描述</label>
+                    <div class="col-md-10">
+                        @*<select id="difficulty_desc" name="difficulty_desc" class="form-control">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.difficulty_level.difficulty_desc">@item.difficulty_level.difficulty_desc</option>
+                    }
+                </select>*@
+                        @Html.DropDownList("difficulty_desc", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group invisible">
+                    <label class="col-md-2 control-label" for="type_desc">型態描述</label>
+                    <div class="col-md-10 ">
+                        <input id="type_desc" name="type_desc" type="text" class="form-control" value="文字" disabled="disabled" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="col-md-10 col-md-offset-2">
+                        <input id="Submit1" type="submit" value="新增" class="btn btn-danger" />
+                        <input id="Button1" type="button" value="取消" class="btn btn-info" onclick="location.href='@Url.Action("Index","QQA")'" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+
+</header>

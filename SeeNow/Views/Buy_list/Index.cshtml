@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SeeNow.Models.buy_list>
+
+@{
+    ViewBag.Title = "後台管理--購買紀錄";
+}
+
+<h2>後台管理--購買紀錄</h2>
+
+<p>
+    @*@Html.ActionLink("新增", "Create")*@
+</p>
+<table class="table table-striped table-danger table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.users.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mall.product_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datetime)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mall.product_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datetime)
+        </td>
+
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

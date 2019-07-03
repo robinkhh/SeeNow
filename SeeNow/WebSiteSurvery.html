@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>WebSiteSurvery</title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        <h2 id="nPage" class="text-center p-3 mb-2 bg-success text-white">WebSite Survery</h2>
+    </div>
+
+
+
+    <div class="text-center">
+        <iframe id="ifr" src="" width="1200" height="900" seamless></iframe>
+    </div>
+
+    <!--要先放jquery，才放bootstrap，因為bootstrap是用jquery開發出來的-->
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <!--<script src="Scripts/bootstrap.min.js"></script>-->
+
+    <script>
+        function test() {
+            var str = new Array("admins", "announcements", "announcement_log", "Bags", "Buy_list", "categories", "category_log", "Classes", "Classes_Member", "difficulty_level", "difficulty_level_log", "friendships", "guardianships", "Mall", "Mall_Log", "managers", "messages", "play_record", "play_record_answer", "Posts", "Post_violations", "Profiles", "Profile_Log", "quizzes", "quiz_answer", "quiz_group", "quiz_violations", "roles", "role_log", "Users", "user_violations", "use_record");
+            var str1 = "";
+            
+            if (i <= str.length) {
+                
+                str1 = "SeeNow WebSite Survery，目前顯示網頁共 " + (i+1) + " 頁";
+                $('#nPage').html(str1);
+
+                if(i<str.length)
+                    $('#ifr').attr('src', "http://localhost:63733/" + str[i] + "/Index");
+                else
+                    $('#ifr').attr('src', "http://localhost:63733/404.mp4");
+                //console.log(str[i]);
+                i++;
+                setTimeout(test, 3000);
+            }
+
+
+
+        }
+        var i = 0;
+        test();
+
+
+    </script>
+
+</body>
+</html>

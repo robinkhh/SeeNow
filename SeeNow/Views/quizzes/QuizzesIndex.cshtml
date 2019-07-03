@@ -1,0 +1,119 @@
+﻿@*@model IEnumerable<SeeNow.Models.quizzes>*@
+@{
+    ViewBag.Title = "QuizzesIndex";
+    //var Pin = @Context.Session.GetString("_Pin");
+    var qzans = Json.Decode(ViewBag.qzans);
+}
+@ViewBag.qzans
+<div class="container">
+    <p></p>
+    <div class="row">
+        <div class="jumbotron quesion-txt">
+            <div id="quizDiv">quizDiv</div>
+        </div>
+        <div class="col-12">
+            <div>
+               <h1 id="countTime"></h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <textarea id="message" class="form-control" style="min-width: 90%; height:auto"></textarea>
+                </div>
+                <div class="col-sm-12">
+                    訊息:<input id="msg" type="text" value="">
+                    <button type="Button" id="sendGroupBtn">送群組</button>
+                    <button type="Button" id="autoBtn" onclick="autoQuiz()">AUTO RUN</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    Pin：<input id="group" type="text" value="111" style="width:100px">
+                </div>
+                <div class="col-sm-2">
+                    姓名:<input id="name" type="text" value="Teacher" style="width:100px">
+                </div>
+                <div class="col-sm-2">
+                    開始:<input type="Button" id="addGroupBtn" value="Start">
+                </div>
+
+                <div class="col-sm-3">
+                    計時:<input id="interval_Time" type="text" value="5" style="width:100px">
+                </div>
+            </div>
+
+
+            <audio controls="controls" id="audio">
+                <source src="~/asset/music/gone_fishin_by_memoraphile_CC0.mp3" type="audio/mpeg" />
+            </audio>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+    </div>
+</div>
+
+@*題組列表*@
+@*@ViewBag.qzans*@
+
+@*@foreach (var qz in qzans)
+{
+    <p>@qz.title</p>
+    <p>@qz.ans1</p>
+    <p>@qz.ans2</p>
+    <p>@qz.ans3</p>
+    <p>@qz.ans4</p>
+}*@
+
+<table class="table" id="Tbquiz">
+    <tr>
+        <th>
+            題目
+        </th>
+        <th>
+            時間
+        </th>
+        <th>
+            答案A
+        </th>
+        <th>
+            答案B
+        </th>
+        <th>
+            答案C
+        </th>
+        <th>
+            答案D
+        </th>
+
+    </tr>
+
+    @foreach (var qz in qzans)
+    {
+        <tr>
+            <td>
+                @qz.title
+            </td>
+            <td>
+                @qz.time
+            </td>
+            <td>
+                @qz.ans1
+            </td>
+            <td>
+                @qz.ans2
+            </td>
+            <td>
+                @qz.ans3
+            </td>
+            <td>
+                @qz.ans4
+            </td>
+        </tr>
+    }
+</table>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/seenow.js"></script>
+}

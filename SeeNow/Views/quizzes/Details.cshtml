@@ -1,0 +1,106 @@
+﻿@model SeeNow.Models.quizzes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>quizzes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tittle_text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tittle_text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title_img_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title_img_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title_video_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title_video_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.energy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.energy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.visible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.visible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.like_num)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.like_num)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.difficulty_level.difficulty_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.difficulty_level.difficulty_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quiz_group1.group_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quiz_group1.group_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type.type_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type.type_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.quiz_guid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

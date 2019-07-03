@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SeeNow.Models.users>
+
+@{
+    ViewBag.Title = "後台管理--會員列表";
+}
+@Styles.Render("~/back/css")
+<h2>後台管理--會員列表</h2>
+
+<p>
+    @*@Html.ActionLink("新增會員", "Registered", "Home")*@
+</p>
+<table class="table table-striped table-primary table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nick_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.e_mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.energy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bag_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lock_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.validation_flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resetable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.profile.profile_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role.role_desc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nick_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.e_mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.energy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bag_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lock_flag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.validation_flag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.resetable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.profile.profile_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role.role_desc)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new { id = item.account }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.account }) |*@
+                @*@Html.ActionLink("刪除", "Delete", new { id = item.account })*@
+            </td>
+        </tr>
+    }
+
+</table>

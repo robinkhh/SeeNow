@@ -1,0 +1,26 @@
+﻿@model SeeNow.Models.difficulty_level
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>difficulty_level</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.difficulty_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.difficulty_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.difficulty_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

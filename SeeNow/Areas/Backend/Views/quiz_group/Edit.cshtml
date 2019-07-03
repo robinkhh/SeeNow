@@ -1,0 +1,72 @@
+﻿@model SeeNow.Models.quiz_group
+
+@{
+    ViewBag.Title = "編輯遊戲題組";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="masthead form ">
+
+    <div class="col-8 align-content-center offset-2">
+        <h2>編輯遊戲題組</h2>
+    </div>
+
+    <form method="post" action="@Url.Action("Edit")">
+        
+        @Html.AntiForgeryToken()
+
+        <div class="container align-content-center">
+
+
+            <div class="form-horizontal">
+                @*<hr />*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.quiz_group1)
+                @Html.HiddenFor(model => model.category)
+                @Html.HiddenFor(model => model.category_id)
+                @*<input id="quiz_group1" name="quiz_group1" type="hidden" value="@Model.quiz_group1" />*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.category.category_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.category.category_desc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.category.category_desc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.group_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.group_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.group_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.account, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.account, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.account, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        @ViewBag.Error
+                        <input id="Button1" type="button" value="取消" class="btn btn-info" onclick="location.href='@Url.Action("Index","quiz_group")'" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+</header>
+
+
+@*<div>
+    @Html.ActionLink("返回遊戲題組列表", "Index")
+</div>*@

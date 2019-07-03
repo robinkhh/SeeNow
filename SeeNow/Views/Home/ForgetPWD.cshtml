@@ -1,0 +1,77 @@
+﻿@model SeeNow.Models.users
+
+@{
+    /**/
+
+    ViewBag.Title = "💖💖 SeeNow 忘記密碼 💖💖";
+
+}
+
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <header class="masthead form ">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="container ">
+
+            <div class="row justify-content-center" id="forget-password">
+                <aside class="col-sm-4">
+                    <div class="card">
+                        <article class="card-body">
+                            <h4 class="card-title text-center mb-4 mt-1">忘記密碼</h4>
+                            <hr>
+                            <p class="text-success text-center">@ViewBag.msg</p>@*Some message goes here*@
+                            @*<form>*@
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input name="account" class="form-control" placeholder="請輸入帳號" type="text">
+                                </div> <!-- input-group.// -->
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                    </div>
+                                    <input name="email" class="form-control" placeholder="請輸入註冊信箱" type="email">
+                                </div> <!-- input-group.// -->
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <img id="valiCode" class="validcode" src="/Home/GetValidateCode" alt="驗證碼" title="點擊刷新" />
+                                    <input id="txtcode" name="txtcode" class="form-control" placeholder="請輸入驗證碼" type="text">
+                                </div>
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-block" name="ResetPwd"> 送出郵件  </button>
+                            </div> <!-- form-group// -->
+                            <p class="text-center"><a href="@Url.Action("Login","Home")" class="btn small" style="color:#138496;">回到登入!</a></p>
+                            @*</form>*@
+                        </article>
+                    </div> <!-- card.// -->
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+
+        var valicode = document.getElementById("valiCode");
+        valicode.addEventListener("click", function () { reflash(valicode); });
+
+        function reflash(obj) {
+            //obj.src = null;
+            obj.src = "/Home/GetValidateCode?time=" + (new Date()).getTime();
+        };
+
+    </script>
+
+}

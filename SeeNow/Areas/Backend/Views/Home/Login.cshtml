@@ -1,0 +1,49 @@
+﻿@model SeeNow.Models.manager
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Backend/Views/Shared/_Login.cshtml";
+}
+
+<section class="material-half-bg">
+    <div class="cover"></div>
+</section>
+<section class="login-content">
+    <div class="logo">
+
+        <h1>SeeNow</h1>
+    </div>
+    <div class="login-box">
+
+        @*<form class="login-form" method="post" action='/Home/Login?ReturnUrl=@Request.QueryString["ReturnUrl"]' name="LoginForm">*@
+        @*<form class="login-form" method="post" action='/backendHome/Login?ReturnUrl=@Request.QueryString["ReturnUrl"]' name="LoginForm">*@
+        <form class="login-form" method="post" @Url.Action("Login", "Home") name="LoginForm">
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+            <div class="form-group">
+                <label class="control-label">管理者帳號</label>
+                <input name="Account" required="required" id="Account" class="form-control" type="text" autofocus> @*placeholder="Email"*@
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Account"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">密碼</label>
+                <input name="PD" autocomplete="new-password" required="required" id="PD" class="form-control" type="password" placeholder="Password">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="PD"></span>
+            </div>
+
+            <div class="form-group btn-container">
+                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-sign-in fa-lg fa-fw"></i>登入</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+<!-- Essential javascripts for application to work-->
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<!-- The javascript plugin to display page loading on top-->
+<script src="~/Scripts/pace.min.js"></script>
+
+
+
+
